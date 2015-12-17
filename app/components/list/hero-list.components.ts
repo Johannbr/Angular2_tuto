@@ -6,8 +6,7 @@ import {HeroManager} from 'app/shared/hero/hero-manager';
 @Component({
   selector: 'hero-list',
   templateUrl:"app/components/list/hero-list.template.html",
-  directives: [HeroDetailComponent],
-  providers:[HeroManager]
+  directives: [HeroDetailComponent]
 })
 export class ListComponent {
   public selectedHero: Hero;
