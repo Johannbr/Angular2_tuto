@@ -6,15 +6,15 @@ import {HeroManager} from 'app/shared/hero/hero-manager';
 @Component({
   selector: 'hero-list',
   templateUrl:"app/components/list/hero-list.template.html",
-  directives: [HeroDetailComponent]
+  directives: [HeroDetailComponent],
+  providers:[HeroManager]
 })
 export class ListComponent {
   public selectedHero: Hero;
   public heroes:Hero[];
-  public hm:HeroManager;
   onSelect(hero: Hero) { this.selectedHero = hero; }
-  constructor(){
-    this.hm=new HeroManager();
-    this.heroes = this.hm.heroes;
+  constructor(hm: HeroManager){
+    // this.hm=new HeroManager();
+    this.heroes = hm.heroes;
   }
 }
