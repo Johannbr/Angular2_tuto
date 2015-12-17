@@ -8,7 +8,6 @@ import {Hero} from '../../shared/hero/hero';
 })
 export class HeroDetailComponent {
   public hero: Hero;
-  public selectedHero: Hero;
   constructor(){
 
   }
