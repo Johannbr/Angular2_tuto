@@ -1,0 +1,8 @@
+
+<div *ngIf="user">
+  <hr>
+  <h2>{{user.name}} details!</h2>
+  <div><label>id: </label>{{user.id}}</div>
+<div><label>name: </label>{{user.name}}</div>
+</div>
+<my-other-user-detail [user]="user"></my-other-user-detail>

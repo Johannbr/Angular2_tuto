@@ -1,14 +1,14 @@
-import {Hero} from 'app/shared/hero/hero';
+import {User} from 'app/shared/user/user';
 
-export class HeroManager{
-  public heroes:Hero[];
+export class UserManager{
+  public useres:User[];
   constructor(){
     this.init();
 
   }
   init(){
-    // this.heroes = JSON.parse(localStorage.getItem("heroes")) || [];
-    this.heroes = [
+    // this.useres = JSON.parse(localStorage.getItem("useres")) || [];
+    this.useres = [
       { "id": 11, "name": "Mr. Nice" },
       { "id": 12, "name": "Narco" },
       { "id": 13, "name": "Bombasto" },

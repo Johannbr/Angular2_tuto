@@ -1,0 +1,12 @@
+<div *ngIf="user">
+  <hr>
+  <h2>{{user.name}} has the following id: {{user.id}}</h2>
+  <div>
+    <label>Try to change its Id: </label>
+    <input [(ngModel)]="user.id" placeholder="Id"/>
+  </div>
+  <div>
+    <label>Try to change its name: </label>
+    <input [(ngModel)]="user.name" placeholder="name"/>
+  </div>
+</div>
