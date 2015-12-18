@@ -10,10 +10,14 @@ import {UserManager} from 'app/shared/user/user-manager';
 })
 export class ListComponent {
   public selectedUser: User;
-  public useres:User[];
+  public users:User[];
   onSelect(user: User) { this.selectedUser = user; }
-  constructor(hm: UserManager){
+  constructor(public um: UserManager){
     // this.hm=new UserManager();
-    this.useres = hm.useres;
+    this.users = um.users;
   }
+  remove(user){
+  this.um.remove(user);
+  return false;
+}
 }

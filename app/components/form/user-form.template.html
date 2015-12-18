@@ -1,0 +1,14 @@
+<h1>Hello {{user.name}}</h1>
+<div class="form-group" ng-submit="add(user)">
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Prénom</span>
+    <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-control" placeholder="Votre prénom" aria-describedby="sizing-addon2">
+  </div>
+<br>
+  <div>
+    <button (click)="add(user)" type="button" placeholder="name" class="btn btn-primary">
+      <span class="glyphicon glyphicon-plus"></span>Add</button>
+    <button (click)="addRandom()" type="button" placeholder="name" class="btn btn-primary" >
+      <span class="glyphicon glyphicon-random"></span>Random</button>
+  </div>
+</div>

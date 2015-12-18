@@ -1,20 +1,29 @@
+<h2>
+  Users</h2>
 
-<h2>Users</h2>
-<ul class="useres">
-  <li *ngFor="#user of useres"
-    [class.selected]="user === selectedUser"
-    (click)="onSelect(user)">
-    <span class="badge">{{user.id}}</span> {{user.name}}
-  </li>
-</ul>
+  <table class="table">
+    <tr>
+      <td>ID</td>
+      <td>Nom</td>
+      <!-- <td>email</td> -->
+      <td>Action</td>
+    </tr>
+    <tr *ngFor="#user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
+      <td><span class="badge">{{user.id}}</span></td>
+      <td>{{user.name}}</td>
+      <td>
+        <button (click)="remove(user)" type="button" class="btn btn-danger">
+          <span class="glyphicon glyphicon-remove-circle"></span> Remove </button>
+    </tr>
+  </table>
 <my-user-detail [user]="selectedUser"></my-user-detail>
 
 
 <style>
-.useres {list-style-type: none; margin-left: 1em; padding: 0; width: 10em;}
-.useres li { cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; }
-.useres li:hover {color: #369; background-color: #EEE; left: .2em;}
-.useres .badge {
+.users {list-style-type: none; margin-left: 1em; padding: 0; width: 10em;}
+.users li { cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; }
+.users li:hover {color: #369; background-color: #EEE; left: .2em;}
+.users .badge {
   font-size: small;
   color: white;
   padding: 0.1em 0.7em;
