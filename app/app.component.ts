@@ -3,7 +3,7 @@ import {ListComponent} from './components/list/user-list.components';
 import {MyForm} from './components/form/user-form.component';
 @Component({
   selector: 'my-app',
-  template:`<h1>{{title}}</h1>
+  template:`<h2>{{title}}</h2>
   <my-form></my-form>
   <user-list></user-list>`,
   directives: [ListComponent, MyForm]
@@ -11,6 +11,6 @@ import {MyForm} from './components/form/user-form.component';
 export class AppComponent {
   public title;
   constructor(){
-    this.title = 'My users app';
+    this.title = 'Angular example';
   }
 }
