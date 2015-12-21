@@ -5,8 +5,7 @@ import {MyRandom} from 'app/shared/user/user-random';
 
 @Component({
   selector: 'my-form',
-  templateUrl: 'app/components/form/user-form.template.html',
-  providers: [MyRandom]
+  templateUrl: 'app/components/form/user-form.template.html'
 })
 export class MyForm {
   user : User;
