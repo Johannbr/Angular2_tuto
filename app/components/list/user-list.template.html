@@ -1,24 +1,26 @@
-<h3>List of users</h3>
-
-<table class="table users">
-  <tr>
-    <td>ID</td>
-    <td>Name</td>
-    <!-- <td>email</td> -->
-    <td>Action</td>
-  </tr>
-  <tr *ngFor="#user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
-    <td>
-      <span class="badge">{{user.id}}</span>
-    </td>
-    <td>{{user.name}}</td>
-    <td>
-      <button (click)="remove(user)" type="button" class="btn btn-danger">
-        <span class="glyphicon glyphicon-remove-circle"></span> Remove </button>
-  </tr>
-</table>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">List of users</h3>
+  </div>
+    <table class="table users">
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <!-- <td>email</td> -->
+        <td>Action</td>
+      </tr>
+      <tr *ngFor="#user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
+        <td>
+          <span class="badge">{{user.id}}</span>
+        </td>
+        <td>{{user.name}}</td>
+        <td>
+          <button (click)="remove(user)" type="button" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove-circle"></span> Remove </button>
+      </tr>
+    </table>
+</div>
 <my-user-detail [user]="selectedUser"></my-user-detail>
-
 
 <style>
 .users {cursor: pointer;}

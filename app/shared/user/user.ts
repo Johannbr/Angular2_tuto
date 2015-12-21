@@ -8,6 +8,7 @@ export class User {
     public name: string,
     public email: string,
     public city: string,
-    public state: string
+    public state: string,
+    public picture: string
   ) {}
 }

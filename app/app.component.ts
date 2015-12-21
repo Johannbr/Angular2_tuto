@@ -11,6 +11,6 @@ import {MyForm} from './components/form/user-form.component';
 export class AppComponent {
   public title;
   constructor(){
-    this.title = 'Angular example';
+    this.title = 'Angular2 example by Johann';
   }
 }

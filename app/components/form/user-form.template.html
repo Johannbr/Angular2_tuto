@@ -1,20 +1,26 @@
-<h3>Hello {{user.name}}</h3>
-<div class="row">
-  <div class="col-xs-8">
-    <div class="form-group" ng-submit="add(user)">
-      <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon2">Name</span>
-        <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-control" placeholder="User name" aria-describedby="sizing-addon2">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Hello {{user.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group" ng-submit="add(user)">
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon2">Name</span>
+            <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-control" placeholder="User name" aria-describedby="sizing-addon2">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <button (click)="add(user)" type="button" placeholder="name" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus"></span> Add this user</button>
       </div>
     </div>
-  </div>
-  <div class="col-xs-4">
-    <button (click)="add(user)" type="button" placeholder="name" class="btn btn-primary">
-      <span class="glyphicon glyphicon-plus"></span>Add</button>
+    <p>Or</p>
+    <div>
+      <button (click)="addRandom()" type="button" placeholder="name" class="btn btn-primary">
+        <span class="glyphicon glyphicon-random"></span> Add a random user</button>
+    </div>
   </div>
 </div>
-<div>
-  <button (click)="addRandom()" type="button" placeholder="name" class="btn btn-primary">
-    <span class="glyphicon glyphicon-random"></span> Random user</button>
-</div>
-  <hr>

@@ -1,8 +1,58 @@
-
 <div *ngIf="user">
-  <hr>
-  <h3>{{user.name}} details</h3>
-  <div><label>id: </label>{{user.id}}</div>
-<div><label>name: </label>{{user.name}}</div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{user.name}}'s details</h3>
+    </div>
+    <div class="panel-body">
+
+
+      <div *ngIf=!editing class="col-xs-8">
+        <div>
+          <label>id: </label>{{user.id}}
+        </div>
+        <div>
+          <label>name: </label>{{user.name}}
+        </div>
+        <div>
+          <label>email: </label>{{user.email}}
+        </div>
+        <div>
+          <label>city: </label>{{user.city}}
+        </div>
+        <div>
+          <label>state: </label>{{user.state}}
+        </div>
+        <button (click)="edit()" type="button" class="btn btn-warning">
+          <span class=" glyphicon glyphicon-edit"></span> Edit </button>
+      </div>
+      <div *ngIf=editing class="col-xs-8">
+        <div>
+          <label>id: </label>
+          <input [(ngModel)]="user.id" placeholder="name" id="input-id" type="text" class="form-inline" placeholder="User id" aria-describedby="sizing-addon2">
+        </div>
+        <div>
+          <label>name: </label>
+          <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-inline" placeholder="User name" aria-describedby="sizing-addon2">
+        </div>
+        <div>
+          <label>email: </label>
+          <input [(ngModel)]="user.email" placeholder="name" id="input-email" type="text" class="form-inline" placeholder="User email" aria-describedby="sizing-addon2">
+        </div>
+        <div>
+          <label>city: </label>
+          <input [(ngModel)]="user.city" placeholder="name" id="input-city" type="text" class="form-inline" placeholder="User city" aria-describedby="sizing-addon2">
+        </div>
+        <div>
+          <label>state: </label>
+          <input [(ngModel)]="user.state" placeholder="name" id="input-state" type="text" class="form-inline" placeholder="User state" aria-describedby="sizing-addon2">
+        </div>
+        <button (click)="save(user)" type="button" class="btn btn-primary">
+          <span class=" glyphicon glyphicon-ok"></span> Save </button>
+      </div>
+      <div class="col-xs-4">
+        <img *ngIf="user.picture" src={{user.picture}} alt="Smiley face" height="130" width="130">
+      </div>
+    </div>
+  </div>
 </div>
-<my-other-user-detail [user]="user"></my-other-user-detail>
