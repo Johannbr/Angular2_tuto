@@ -9,7 +9,6 @@ import {MyRandom} from 'app/shared/user/user-random';
 })
 export class MyForm {
   user : User;
-  dataFromAPI;
   constructor(public um: UserManager, public ur: MyRandom) {
     this.user=new User();
     this.user.name="";
