@@ -14,18 +14,18 @@ describe('Users',()=>{
   //   expect(um.users.length).toEqual(length1+1);
   // });
 
-    it('has the right length after adding one random user',()=>{
-      let mf = new MyForm;
-      // console.log(mf);
-      // let mr =new MyRandom();
-
-      // let um = new UserManager();
-      // let length2 = mf.users.length;
-
-      // mf.addRandom();
-      // expect(um.users.length).toEqual(length2+1);
-      expect(true).toEqual(true);
-  });
+  //   it('has the right length after adding one random user',()=>{
+  //     let mf = new MyForm;
+  //     // console.log(mf);
+  //     // let mr =new MyRandom();
+  //
+  //     // let um = new UserManager();
+  //     // let length2 = mf.users.length;
+  //
+  //     // mf.addRandom();
+  //     // expect(um.users.length).toEqual(length2+1);
+  //     expect(true).toEqual(true);
+  // });
 
 
 })

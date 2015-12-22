@@ -11,7 +11,7 @@ module.exports = function(config) {
       {pattern: 'node_modules/angular2/bundles/angular2.js', included: true, watched: true},
       {pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true},
       {pattern: 'karma-test-shim.js', included: true, watched: true},
-      {pattern: 'app/test/matchers.js', included: true, watched: true},
+      // {pattern: 'app/test/matchers.js', included: true, watched: true},
 
       // paths loaded via module imports
       {pattern: 'app/**/*.js', included: false, watched: true},
@@ -20,6 +20,7 @@ module.exports = function(config) {
       // (these paths need to be rewritten, see proxies section)
       {pattern: 'app/**/*.html', included: false, watched: true},
       {pattern: 'app/**/*.css', included: false, watched: true},
+      {pattern: 'test/**/*.css', included: false, watched: true},
 
       // paths to support debugging with source maps in dev tools
       {pattern: 'app/**/*.ts', included: false, watched: false},
@@ -29,10 +30,13 @@ module.exports = function(config) {
     // proxied base paths
     proxies: {
       // required for component assests fetched by Angular's compiler
-      "/app/": "/base/app/"
+      "/app/": "/app/"
     },
 
-    reporters: ['progress'],
+    reporters: ['progress', 'html'],
+    htmlReporter: {
+      outputFile: 'test.html'
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
