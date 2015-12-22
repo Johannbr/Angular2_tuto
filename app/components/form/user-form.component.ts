@@ -9,20 +9,16 @@ import {MyRandom} from 'app/shared/user/user-random';
 })
 export class MyForm {
   user : User;
-  dataFromAPI;
   constructor(public um: UserManager, public ur: MyRandom) {
     this.user=new User();
     this.user.name="";
-    // console.log^(this.user);
   }
   add(user) {
     this.um.add(user);
   }
   addRandom() {
-    var um = this.um;
-    // var ur = new MyRandom;
-    this.ur.getRandom(function(user) {
-      um.addRandom(JSON.parse(user));
+    this.ur.getRandom().then((user) => {
+      this.um.addRandom(JSON.parse(user));
     });
   }
 }
