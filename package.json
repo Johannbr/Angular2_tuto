@@ -1,11 +1,15 @@
 {
   "name": "tutorial_users",
-  "version": "1.0.0",
+  "version ": "1.0.0 ",
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
-    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
+    "clean": "rimraf /**/*.js /**/*.js.map",
+    "watch": "tsc --watch",
+    "serve": "http-server -p 9010 -c-1",
+    "test": "karma start karma.conf.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -20,7 +24,13 @@
   },
   "devDependencies": {
     "concurrently": "^1.0.0",
+    "http-server": "^0.8.5",
     "jasmine-core": "2.4.1",
+    "karma": "^0.12.23",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-cli": "^0.0.4",
+    "karma-jasmine": "^0.3.6",
+    "karma-htmlfile-reporter":"^0.2.2",
     "lite-server": "^1.3.1",
     "typescript": "^1.7.3"
   }

@@ -2,6 +2,7 @@ import {User} from 'app/shared/user/user';
 
 export class UserManager{
   public users:User[];
+  public removedUsers:User[];
   constructor(){
     this.init();
   }
@@ -31,8 +32,23 @@ remove(user){
     var index = this.users.indexOf(user);
     this.users.splice(index,1);
     this.save(this.users);
+    this.removedUsers.push(user);
+    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
+  }
+  restore(user){
+    this.users.push(user);
+    this.save(this.users);
+    var index = this.removedUsers.indexOf(user);
+    this.removedUsers.splice(index,1);
+    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
+  }
+  removeDefinitely(user){
+      var index = this.removedUsers.indexOf(user);
+      this.removedUsers.splice(index,1);
+      localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
   }
   init(){
     this.users = JSON.parse(localStorage.getItem("users")) || [];
+    this.removedUsers = JSON.parse(localStorage.getItem("removedUsers")) || [];
   }
 }
