@@ -8,11 +8,12 @@ import {UserManager} from 'app/shared/user/user-manager';
   inputs: ['user']
 })
 export class UserDetailComponent {
-  public user: User;
+  // public user: User;
   public editing:boolean;
   constructor(public um:UserManager){
 this.editing=false;
-  }
+// console.log(this.user)
+}
   edit(){
     this.editing = true;
     return false;

@@ -6,6 +6,7 @@
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
+    "clean": "rimraf /**/*.js /**/*.js.map",
     "watch": "tsc --watch",
     "serve": "http-server -p 9010 -c-1",
     "test": "karma start karma.conf.js"
