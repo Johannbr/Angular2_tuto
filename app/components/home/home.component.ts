@@ -11,7 +11,7 @@ import {MyForm} from 'app/components/form/user-form.component';
 
 })
 // @RouteConfig([
-//   {path:'/bookmark', name: 'Bookmark', component: ListBookmarked}
+//   {path:'/removed', name: 'Removed', component: ListRemoved
 // ])
 export class HomeComponent {
   constructor() {

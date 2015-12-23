@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">List of bookmarked users</h3>
+    <h3 class="panel-title">List of removed users</h3>
   </div>
   <table class="table users">
     <tr>
@@ -9,15 +9,17 @@
       <!-- <td>email</td> -->
       <td>Action</td>
     </tr>
-    <!-- <tr *ngFor="#user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
+    <tr *ngFor="#user of users">
       <td>
         <span class="badge">{{user.id}}</span>
       </td>
       <td>{{user.name}}</td>
       <td>
-        <button (click)="remove(user)" type="button" class="btn btn-danger">
-          <span class="glyphicon glyphicon-remove-circle"></span> Remove </button>
-    </tr> -->
+        <button (click)="restore(user)" type="button" class="btn btn-success">
+          <span class="glyphicon glyphicon-backward"></span> Restore </button>
+          <button (click)="remove(user)" type="button" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove-circle"></span> Remove definitely </button>
+    </tr>
   </table>
 </div>
 <my-user-detail [user]="selectedUser"></my-user-detail>

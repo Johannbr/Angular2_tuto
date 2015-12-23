@@ -14,9 +14,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a [routerLink]="['Home']">Home </a></li>
-        <li><a [routerLink]="['Bookmark']">Bookmark  </a></li>
+        <li class="active"><a [routerLink]="['Home']">Home</a></li>
+        <li><a [routerLink]="['Removed']">Removed</a></li>
       </ul>
+      <!-- [class.selected]="user === selectedUser" -->
       <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -27,3 +28,12 @@
   </div><!-- /.container-fluid -->
 </nav>
 <router-outlet></router-outlet>
+
+<style>
+/* route-link anchor tags */
+/*.navbar>a {padding: 5px; text-decoration: none; font-family: Arial, Helvetica, sans-serif; }
+.navbar>a:visited, .navbar>a:link {color: #444;}
+.navbar>a:hover {color: white; background-color: #1171a3; }
+.navbar>a.router-link-active {color: white; background-color: #52b9e9; }*/
+.selected { background-color: #EEE; color: #369; }
+</style>
