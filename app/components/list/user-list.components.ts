@@ -11,10 +11,10 @@ import {UserManager} from 'app/shared/user/user-manager';
 export class ListComponent {
   public selectedUser: User;
   public users:User[];
-  onSelect(user: User) { this.selectedUser = user; }
   constructor(public um: UserManager){
     this.users = um.users;
   }
+  onSelect(user: User) { this.selectedUser = user; }
   remove(user){
   if(this.selectedUser === user){
     this.selectedUser = false;
