@@ -1,19 +1,16 @@
+import {Http} from 'angular2/http';
+import {Injectable} from 'angular2/core';
+
+@Injectable()
 export class MyRandom {
   dataFromAPI;
-  constructor() {
+  constructor(public http: Http) {
   }
   getRandom(){
-
-  return new Promise((resolve, reject) => {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (xhttp.readyState == 4 && xhttp.status == 200) {
-        this.dataFromAPI = xhttp.responseText;
-        resolve(this.dataFromAPI);
-      }
-    };
-    xhttp.open("GET", "https://randomuser.me/api/", true);
-    xhttp.send();
+    return new Promise((resolve, reject) => {
+    this.http.get('https://randomuser.me/api/').subscribe(res => {
+      resolve(res.json());
+    });
   })
   }
 }

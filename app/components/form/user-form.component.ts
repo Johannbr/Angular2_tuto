@@ -9,7 +9,7 @@ import {MyRandom} from 'app/shared/user/user-random';
 })
 export class MyForm {
   user : User;
-  constructor(public um: UserManager, public ur: MyRandom) {
+    constructor(public um: UserManager, public ur: MyRandom) {
     this.user=new User();
     this.user.name="";
   }
@@ -18,7 +18,7 @@ export class MyForm {
   }
   addRandom() {
     this.ur.getRandom().then((user) => {
-      this.um.addRandom(JSON.parse(user));
+      this.um.addRandom(user);
     });
   }
 }
