@@ -4,8 +4,7 @@ import {MyForm} from 'app/components/form/user-form.component';
 
 @Component({
   selector: 'my-home',
-  template:`<h2>{{title}}</h2>
-  <my-form></my-form>
+  template:`<my-form></my-form>
   <user-list></user-list>`,
   directives: [MyForm, ListComponent]
 
