@@ -1,14 +1,5 @@
 # Small Application with Angular 2
 
-## Getting started/Pour démarrer
-If you don't want to do the tutorial, just follow the following steps:
-(Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes)
-- install node.js in order to use npm: https://nodejs.org/en/download/
-- clone the repository
-- cd /folder_of_the_source/
-- npm install (install the dependencies)
-- npm start (start the server)
-
 
 ## Tutorial/Tutoriel
 Let's create a small CRM app that allows us to create, read, update, delete users.
@@ -16,6 +7,9 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
 [1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)
+[2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)
+
+[Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
 ## 1. Let's begin / Pour commencer
 
@@ -109,7 +103,7 @@ import {AppComponent} from './app.component'
 bootstrap(AppComponent);
 ```
 ## 2. Navbar / Barre de navigation
-Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*
+Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*.
 
 Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*.
 
@@ -232,3 +226,14 @@ export class ListRemoved {
   }
 }
 ```
+
+
+
+## Getting started / Pour démarrer
+If you don't want to do the tutorial, just follow the following steps:
+(Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes)
+- install node.js in order to use npm: https://nodejs.org/en/download/
+- clone the repository
+- cd /folder_of_the_source/
+- npm install (install the dependencies)
+- npm start (start the server)
