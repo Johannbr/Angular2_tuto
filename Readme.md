@@ -1,7 +1,7 @@
 # Small Application with Angular 2
 
 ## Getting started/Pour démarrer
-If you don't want to do the tutorial, just follow the following steps:<br/>
+If you don't want to do the tutorial, just follow the following steps:
 (Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes)
 - install node.js in order to use npm: https://nodejs.org/en/download/
 - clone the repository
@@ -11,7 +11,7 @@ If you don't want to do the tutorial, just follow the following steps:<br/>
 
 
 ## Tutorial/Tutoriel
-Let's create a small CRM app that allows us to create, read, update, delete users. <br/>
+Let's create a small CRM app that allows us to create, read, update, delete users.
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
@@ -29,12 +29,12 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ### 1.2 First files / Les premiers fichiers
 
-First we'll create a file named app.component.ts. The application should have the following structure:<br/>
+First we'll create a file named app.component.ts. The application should have the following structure:
 D'abord, nous allons créer un fichier app.component.ts. L'application aura la structure suivante:
 
-app/<br/>
-----/boot.ts<br/>
-----/app.component.ts<br/>
+app/
+----/boot.ts
+----/app.component.ts
 index.html
 
 ```javascript
@@ -51,7 +51,8 @@ export class AppComponent {
   }
 }
 ```
-Then we'll create the file index.html.<br/>
+<br/>
+Then we'll create the file index.html.
 Ensuite créez le fichier index.html.
 
 ```html
@@ -98,8 +99,8 @@ Ensuite créez le fichier index.html.
 </body>
 </html>
 ```
-
-And we need to boostrap the application with the boot.ts file.<br/>
+<br/>
+And we need to boostrap the application with the boot.ts file.
 Il faut enfin amorcer l'application via le fichier boot.ts.
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
@@ -108,7 +109,7 @@ import {AppComponent} from './app.component'
 bootstrap(AppComponent);
 ```
 ## 2. Navbar / Barre de navigation
-Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*<br/>
+Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*
 
 Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*.
 
@@ -155,8 +156,8 @@ export class MyNavBar {
 </nav>
 <router-outlet></router-outlet>
 ```
-
-Then modify *app.components.ts* as follows:<br/>
+<br/>
+Then modify *app.components.ts* as follows:
 Ensuite modifier *app.components.ts* comme suit:
 ```javascript
 import {Component} from 'angular2/core';
@@ -178,6 +179,56 @@ export class AppComponent {
   public title;
   constructor(){
     this.title = 'Angular 2 example by Johann';
+  }
+}
+```
+<br/>
+You should also modify and the *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.
+Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.
+```javascript
+import {bootstrap}    from 'angular2/platform/browser'
+import {ROUTER_PROVIDERS} from 'angular2/router';
+import {AppComponent} from './app.component'
+
+bootstrap(AppComponent,[ROUTER_PROVIDERS]);
+```
+
+<br/>
+If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:
+Si vous essayez de lancer l'application, vous allez recevoir une erreur, car les composants *Home* et *Removed* ne sont pas encore créés. La structure devrait être comme suit:
+
+app/
+----components
+---------------home/
+---------------------home.component.ts
+---------------removed/
+---------------------removed.component.ts
+
+**home.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+
+**home.component.ts**
+@Component({
+  selector: 'my-home',
+  template:`<h2>Home</h2>`,
+  directives: []
+})
+export class HomeComponent {
+  constructor() {
+  }
+}
+```
+**removed.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+
+@Component({
+  selector: 'user-list-removed',
+  template:`<h2>Removed</h2>`,
+})
+export class ListRemoved {
+  constructor(){
   }
 }
 ```
