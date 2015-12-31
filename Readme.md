@@ -6,7 +6,7 @@ Let's create a small CRM app that allows us to create, read, update, delete user
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
-[1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)
+[1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)</br>
 [2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)
 
 [X. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
@@ -232,12 +232,13 @@ Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous p
 ## 3. Form
 
 We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
-Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:
+Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
 ![form](./images/form.png "form")
-
+<br/>
 **user-form.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
+import {User} from 'app/shared/user/user';
 
 @Component({
   selector: 'my-form',
@@ -246,10 +247,13 @@ import {Component} from 'angular2/core';
 export class MyForm {
   user : User;
     constructor() {
+    this.user=new User();
+    this.user.name="";
   }
 }
 ```
 
+<br/><br/>
 **user-form.template.html**
 ```html
 <div class="panel panel-default">
@@ -279,6 +283,34 @@ export class MyForm {
   </div>
 </div>
 ```
+
+For the time being, the two buttons of the view will report an error, we'll fix it later on. For now create the class User in the following folder:</br>
+Pour le moment, les deux boutons vont générer une erreur, on réglera ce problème un peu plus tard. Pour l'instant, créez la classe User dans le dossier suivant:</br>
+app/<br/>
+----shared/<br/>
+---------------user/<br/>
+---------------------user.ts<br/>
+<br/>
+**user.ts**
+```javascript
+export class User {
+    constructor(
+    public id: number,
+    public name: string,
+    public email: string,
+    public city: string,
+    public state: string,
+    public picture: string
+  ) {}
+}
+```
+
+Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of the data binding. It uses the attribute of the module declared in MyForm class i.e. user.<br/>
+Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deux sens. Dans le template **user-form.template.html**, la directive ci-dessous gère le data binding. Elle utilise l'attribut user de la classe MyForm.
+```html
+<input [(ngModel)]="user.name">
+```
+
 
 ## Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
