@@ -2,14 +2,14 @@
 
 
 ## Tutorial/Tutoriel
-Let's create a small CRM app that allows us to create, read, update, delete users.
+Let's create a small CRM app that allows us to create, read, update, delete users.</br>
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
 [1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)
 [2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)
 
-[Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
+[X. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
 ## 1. Let's begin / Pour commencer
 
@@ -23,12 +23,12 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ### 1.2 First files / Les premiers fichiers
 
-First we'll create a file named app.component.ts. The application should have the following structure:
+First we'll create a file named app.component.ts. The application should have the following structure:</br>
 D'abord, nous allons créer un fichier app.component.ts. L'application aura la structure suivante:
 
-app/
-----/boot.ts
-----/app.component.ts
+app/</br>
+----/boot.ts</br>
+----/app.component.ts</br>
 index.html
 
 ```javascript
@@ -45,8 +45,8 @@ export class AppComponent {
   }
 }
 ```
-<br/>
-Then we'll create the file index.html.
+<br/></br>
+Then we'll create the file index.html.</br>
 Ensuite créez le fichier index.html.
 
 ```html
@@ -94,7 +94,7 @@ Ensuite créez le fichier index.html.
 </html>
 ```
 <br/>
-And we need to boostrap the application with the boot.ts file.
+And we need to boostrap the application with the boot.ts file.</br>
 Il faut enfin amorcer l'application via le fichier boot.ts.
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
@@ -107,7 +107,6 @@ Now, we're gonna add a navbar, to navigate between pages. Create a folder named 
 
 Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*.
 
-<br/>
   **navbar.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
@@ -177,7 +176,7 @@ export class AppComponent {
 }
 ```
 <br/>
-You should also modify and the *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.
+You should also modify and the *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.<br/>
 Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
@@ -188,14 +187,14 @@ bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
 
 <br/>
-If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:
+If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:<br/>
 Si vous essayez de lancer l'application, vous allez recevoir une erreur, car les composants *Home* et *Removed* ne sont pas encore créés. La structure devrait être comme suit:
 
-app/
-----components
----------------home/
----------------------home.component.ts
----------------removed/
+app/<br/>
+----components<br/>
+---------------home/<br/>
+---------------------home.component.ts<br/>
+---------------removed/<br/>
 ---------------------removed.component.ts
 
 **home.component.ts**
@@ -205,7 +204,7 @@ import {Component} from 'angular2/core';
 **home.component.ts**
 @Component({
   selector: 'my-home',
-  template:`<h2>Home</h2>`,
+  template:`<h2>Home Component</h2>`,
   directives: []
 })
 export class HomeComponent {
@@ -219,7 +218,7 @@ import {Component} from 'angular2/core';
 
 @Component({
   selector: 'user-list-removed',
-  template:`<h2>Removed</h2>`,
+  template:`<h2>Removed Component</h2>`,
 })
 export class ListRemoved {
   constructor(){
@@ -227,7 +226,59 @@ export class ListRemoved {
 }
 ```
 
+If you launch the app, it should work and you should be able to navigate between these two pages.<br/>
+Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous pouvez normalement naviguer entre les deux pages créées.
 
+## 3. Form
+
+We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
+Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:
+![form](./images/form.png "form")
+
+**user-form.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+
+@Component({
+  selector: 'my-form',
+  templateUrl: 'app/components/form/user-form.template.html'
+})
+export class MyForm {
+  user : User;
+    constructor() {
+  }
+}
+```
+
+**user-form.template.html**
+```html
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Hello {{user.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group" ng-submit="add(user)">
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon2">Name</span>
+            <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-control" placeholder="User name" aria-describedby="sizing-addon2">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <button (click)="add(user)" type="button" placeholder="name" class="btn btn-primary">
+          <span class="glyphicon glyphicon-plus"></span> Add this user</button>
+      </div>
+    </div>
+    <p>Or</p>
+    <div>
+      <button (click)="addRandom()" type="button" placeholder="name" class="btn btn-primary">
+        <span class="glyphicon glyphicon-random"></span> Add a random user</button>
+    </div>
+  </div>
+</div>
+```
 
 ## Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
