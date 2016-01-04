@@ -7,7 +7,9 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
 [1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)</br>
-[2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)
+[2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)</br>
+[3. Form / Formulaire](https://github.com/Johannbr/Angular2_example#3-form)</br>
+
 
 [X. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
@@ -94,8 +96,8 @@ Ensuite créez le fichier index.html.
 </html>
 ```
 <br/>
-And we need to boostrap the application with the boot.ts file.</br>
-Il faut enfin amorcer l'application via le fichier boot.ts.
+And we need to boostrap the application with the boot.ts file. Try to launch the application with *npm start*, it should work.</br>
+Il faut enfin amorcer l'application via le fichier boot.ts. Lancez l'application avec *npm start*, ça devrait fonctionner.
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
 import {AppComponent} from './app.component'
@@ -108,6 +110,8 @@ Now, we're gonna add a navbar, to navigate between pages. Create a folder named 
 Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*.
 
   **navbar.component.ts**
+
+  [navbar.component.ts](app\shared\navbar\navbar.component.ts)
 ```javascript
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
@@ -230,6 +234,7 @@ If you launch the app, it should work and you should be able to navigate between
 Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous pouvez normalement naviguer entre les deux pages créées.
 
 ## 3. Form
+### 3.1 Data binding
 
 We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
 Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
@@ -311,6 +316,132 @@ Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deu
 <input [(ngModel)]="user.name">
 ```
 
+### 3.2 Dependency injection / Injection de dépendance
+We'll now add functionalities to those buttons:
+- add a user by name
+- add a random user from the api: https://randomuser.me/api/
+In **user-form.component.ts**, add the import and change the MyForm class by the following:
+
+Maintenant, nous allons implémenter les fonctionnalités associées aux deux boutons précédents:
+- ajout d'un utilisateur par nom
+- ajout d'un utilisateur via l'api: https://randomuser.me/api/
+Dans **user-form.component.ts**, ajoutez les imports et remplacez la classe MyForm par le code suivant:
+
+```javascript
+import {UserManager} from 'app/shared/user/user-manager';
+import {MyRandom} from 'app/shared/user/user-random';
+(...)
+export class MyForm {
+  user : User;
+    constructor(public um: UserManager, public ur: MyRandom) {
+    this.user=new User();
+    this.user.name="";
+  }
+  add(user) {
+    this.um.add(user);
+  }
+  addRandom() {
+    this.ur.getRandom().then((user) => {
+      this.um.addRandom(user);
+    });
+  }
+}
+```
+
+As you can see above, we used in the constructor two parameters of type UserManager and MyRandom. Those services are injected by Angular. We have to follow two steps:
+- Creating those two classes
+- Adding them to the bootstrapping process
+
+Comme vous pouvez le voir dans ce code, nous utilisons deux paramètres dans le constructeur qui sont respectivement de type UserManager et MyRandom. Ces deux services sont injectés par Angular. Nous devons suivre deux étapes pour faire fonctionner l'injection de dépendance:
+- Créer ces deux services
+- Les ajouter au processus de bootstrapping
+
+In the following folder, add the file **user-manager.ts** and **user-random.ts**,
+user-manager is the service that will mostly do CRUD operation on the user in your application. User-random will get random users from the API https://randomuser.me and will add them to your application.<br/>
+Dans le dossier suivant, ajouter les fichiers **user-manager.ts** et **user-random.ts** user-manager est le service qui permettra de réaliser des opérations de types CRUD sur les utilisateurs de l'application. Quant à user-random, il fait appel à l'API de https://randomuser.me et permet d'ajouter des utilisateurs de façon aléatoire.<br/>
+app/<br/>
+----shared/<br/>
+---------------user/<br/>
+---------------------user-manager.ts<br/>
+---------------------user-random.ts<br/>
+
+**user-manager.ts**
+```javascript
+import {User} from 'app/shared/user/user';
+
+export class UserManager{
+  public users:User[];
+  public removedUsers:User[];
+  constructor(){
+    this.init();
+  }
+  add(user) {
+    var time = new Date();
+    var newUser = new User(time.getMilliseconds(), user.name);
+    this.users.push(newUser);
+    this.save(this.users);
+  }
+  addRandom(randomUser){
+  var time = new Date();
+  var name = randomUser.results[0].user.name.first;
+  var email = randomUser.results[0].user.email;
+  var newUser = new User(time.getMilliseconds(), name, email,randomUser.results[0].user.location.city,randomUser.results[0].user.location.state, randomUser.results[0].user.picture.medium);
+  this.users.push(newUser);
+  this.save(this.users);
+}
+save(users){
+  localStorage.setItem("users",JSON.stringify(this.users));
+}
+saveUser(user){
+  var index = this.users.indexOf(user);
+  this.users[index]=user;
+  this.save(this.users);
+}
+remove(user){
+    var index = this.users.indexOf(user);
+    this.users.splice(index,1);
+    this.save(this.users);
+    this.removedUsers.push(user);
+    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
+  }
+  restore(user){
+    this.users.push(user);
+    this.save(this.users);
+    var index = this.removedUsers.indexOf(user);
+    this.removedUsers.splice(index,1);
+    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
+  }
+  removeDefinitely(user){
+      var index = this.removedUsers.indexOf(user);
+      this.removedUsers.splice(index,1);
+      localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
+  }
+  init(){
+    this.users = JSON.parse(localStorage.getItem("users")) || [];
+    this.removedUsers = JSON.parse(localStorage.getItem("removedUsers")) || [];
+  }
+}
+```
+
+**user-random.ts**
+```javascript
+import {Http} from 'angular2/http';
+import {Injectable} from 'angular2/core';
+
+@Injectable()
+export class MyRandom {
+  dataFromAPI;
+  constructor(public http: Http) {
+  }
+  getRandom(){
+    return new Promise((resolve, reject) => {
+    this.http.get('https://randomuser.me/api/').subscribe(res => {
+      resolve(res.json());
+    });
+  })
+  }
+}
+```
 
 ## Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
