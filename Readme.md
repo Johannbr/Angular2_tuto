@@ -1,6 +1,5 @@
 # Small Application with Angular 2
 
-
 ## Tutorial/Tutoriel
 Let's create a small CRM app that allows us to create, read, update, delete users.</br>
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
@@ -25,7 +24,7 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ### 1.2 First files / Les premiers fichiers
 
-First we'll create a file named app.component.ts. The application should have the following structure:</br>
+First we'll create a file named nent.ts. The application should have the following structure:</br>
 D'abord, nous allons créer un fichier app.component.ts. L'application aura la structure suivante:
 
 app/</br>
@@ -105,56 +104,19 @@ import {AppComponent} from './app.component'
 bootstrap(AppComponent);
 ```
 ## 2. Navbar / Barre de navigation
-Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*.
+### 2.1 Router configuration / Configuration des routes
+Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*. Just grab the code from the following links:
 
-Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*.
+Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*. Récupérer le code depuis les liens suivants:
 
-  **navbar.component.ts**
+  **[navbar.component.ts](app/shared/navbar/navbar.component.ts)**<br/>
+  **[navbar.template.html](app/shared/navbar/navbar.template.html)**
 
-  [navbar.component.ts](app/shared/navbar/navbar.component.ts)
-```javascript
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-
-@Component({
-  selector: 'my-navbar',
-  templateUrl: 'app/shared/navbar/navbar.template.html',
-  directives:[ROUTER_DIRECTIVES]
-})
-
-export class MyNavBar {
-  constructor() {
-
-  }
-}
-```
+  app/<br/>
+  ----shared/<br/>
+  ---------------navbar/<br/>
 <br/>
-  **navbar.template.html**
-```html
-<!-- navbar.template.html -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand </a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a [routerLink]="['Home']">Home</a></li>
-        <li><a [routerLink]="['Removed']">Removed</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<router-outlet></router-outlet>
-```
-<br/>
-Then modify *app.components.ts* as follows:
+Then modify *app.components.ts* as follows:<br/>
 Ensuite modifier *app.components.ts* comme suit:
 ```javascript
 import {Component} from 'angular2/core';
@@ -180,7 +142,7 @@ export class AppComponent {
 }
 ```
 <br/>
-You should also modify and the *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.<br/>
+You should also modify *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.<br/>
 Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
@@ -189,8 +151,18 @@ import {AppComponent} from './app.component'
 
 bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
+Finally, add the following in index.html, right after <head>, or you can copy the whole file from sources: **[index.html](app/index.html)**<br/>
+Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head>. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](app/index.html)**<br/>
+
+```html
+<base href="/">
+<script src="node_modules/angular2/bundles/router.dev.js"></script>
+<script src="node_modules/angular2/bundles/http.dev.js"></script>
+```
+
 
 <br/>
+### 2.2 Home and Removed components / Composants Home et Removed
 If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:<br/>
 Si vous essayez de lancer l'application, vous allez recevoir une erreur, car les composants *Home* et *Removed* ne sont pas encore créés. La structure devrait être comme suit:
 
@@ -239,7 +211,15 @@ Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous p
 We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
 Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
 ![form](./images/form.png "form")
-<br/>
+<br/><br/>
+The strucutre will be as follows:<br/>
+La structure sera comme suit:<br/>
+app/<br/>
+----components/<br/>
+-----------------form/<br/>
+----------------------user-form.component.ts<br/>
+----------------------user-form.template.html<br/>
+
 **user-form.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
@@ -257,37 +237,10 @@ export class MyForm {
   }
 }
 ```
-
-<br/><br/>
-**user-form.template.html**
-```html
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"> Hello {{user.name}}</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="form-group" ng-submit="add(user)">
-          <div class="input-group">
-            <span class="input-group-addon" id="sizing-addon2">Name</span>
-            <input [(ngModel)]="user.name" placeholder="name" id="input-name" type="text" class="form-control" placeholder="User name" aria-describedby="sizing-addon2">
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <button (click)="add(user)" type="button" placeholder="name" class="btn btn-primary">
-          <span class="glyphicon glyphicon-plus"></span> Add this user</button>
-      </div>
-    </div>
-    <p>Or</p>
-    <div>
-      <button (click)="addRandom()" type="button" placeholder="name" class="btn btn-primary">
-        <span class="glyphicon glyphicon-random"></span> Add a random user</button>
-    </div>
-  </div>
-</div>
-```
+Grab the code here: <br/>
+Récupérez le code ici: <br/>
+**[user-form.template.html](app/components/form/user-form.template.html)**
+<br/>
 
 For the time being, the two buttons of the view will report an error, we'll fix it later on. For now create the class User in the following folder:</br>
 Pour le moment, les deux boutons vont générer une erreur, on réglera ce problème un peu plus tard. Pour l'instant, créez la classe User dans le dossier suivant:</br>
@@ -310,7 +263,7 @@ export class User {
 }
 ```
 
-Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of the data binding. It uses the attribute of the module declared in MyForm class i.e. user.<br/>
+Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of data binding. It uses the attribute of the module declared in MyForm class i.e. user.<br/>
 Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deux sens. Dans le template **user-form.template.html**, la directive ci-dessous gère le data binding. Elle utilise l'attribut user de la classe MyForm.
 ```html
 <input [(ngModel)]="user.name">
@@ -320,17 +273,20 @@ Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deu
 We'll now add functionalities to those buttons:
 - add a user by name
 - add a random user from the api: https://randomuser.me/api/
-In **user-form.component.ts**, add the import and change the MyForm class by the following:
+In **user-form.component.ts**, add the imports:
 
 Maintenant, nous allons implémenter les fonctionnalités associées aux deux boutons précédents:
 - ajout d'un utilisateur par nom
 - ajout d'un utilisateur via l'api: https://randomuser.me/api/
-Dans **user-form.component.ts**, ajoutez les imports et remplacez la classe MyForm par le code suivant:
+Dans **user-form.component.ts**, ajoutez les imports:
 
 ```javascript
 import {UserManager} from 'app/shared/user/user-manager';
 import {MyRandom} from 'app/shared/user/user-random';
-(...)
+```
+and change the MyForm class by the following:<br/>
+remplacez la classe MyForm par le code suivant:
+```javascript
 export class MyForm {
   user : User;
     constructor(public um: UserManager, public ur: MyRandom) {
@@ -359,89 +315,23 @@ Comme vous pouvez le voir dans ce code, nous utilisons deux paramètres dans le 
 In the following folder, add the file **user-manager.ts** and **user-random.ts**,
 user-manager is the service that will mostly do CRUD operation on the user in your application. User-random will get random users from the API https://randomuser.me and will add them to your application.<br/>
 Dans le dossier suivant, ajouter les fichiers **user-manager.ts** et **user-random.ts** user-manager est le service qui permettra de réaliser des opérations de types CRUD sur les utilisateurs de l'application. Quant à user-random, il fait appel à l'API de https://randomuser.me et permet d'ajouter des utilisateurs de façon aléatoire.<br/>
+
+Sources:<br/>
+**[user-manager.ts](app/shared/user/user-manager.ts)**<br/>
+**[user-random.ts](app/shared/user/user-random.ts)**<br/>
+
 app/<br/>
 ----shared/<br/>
 ---------------user/<br/>
 ---------------------user-manager.ts<br/>
 ---------------------user-random.ts<br/>
 
-**user-manager.ts**
-```javascript
-import {User} from 'app/shared/user/user';
+You won't get error anymore if you press the button in the form.<br/>
+Vous ne devriez plus avoir d'erreurs en appuyant sur les boutons du formulaire.<br/>
 
-export class UserManager{
-  public users:User[];
-  public removedUsers:User[];
-  constructor(){
-    this.init();
-  }
-  add(user) {
-    var time = new Date();
-    var newUser = new User(time.getMilliseconds(), user.name);
-    this.users.push(newUser);
-    this.save(this.users);
-  }
-  addRandom(randomUser){
-  var time = new Date();
-  var name = randomUser.results[0].user.name.first;
-  var email = randomUser.results[0].user.email;
-  var newUser = new User(time.getMilliseconds(), name, email,randomUser.results[0].user.location.city,randomUser.results[0].user.location.state, randomUser.results[0].user.picture.medium);
-  this.users.push(newUser);
-  this.save(this.users);
-}
-save(users){
-  localStorage.setItem("users",JSON.stringify(this.users));
-}
-saveUser(user){
-  var index = this.users.indexOf(user);
-  this.users[index]=user;
-  this.save(this.users);
-}
-remove(user){
-    var index = this.users.indexOf(user);
-    this.users.splice(index,1);
-    this.save(this.users);
-    this.removedUsers.push(user);
-    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
-  }
-  restore(user){
-    this.users.push(user);
-    this.save(this.users);
-    var index = this.removedUsers.indexOf(user);
-    this.removedUsers.splice(index,1);
-    localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
-  }
-  removeDefinitely(user){
-      var index = this.removedUsers.indexOf(user);
-      this.removedUsers.splice(index,1);
-      localStorage.setItem("removedUsers",JSON.stringify(this.removedUsers));
-  }
-  init(){
-    this.users = JSON.parse(localStorage.getItem("users")) || [];
-    this.removedUsers = JSON.parse(localStorage.getItem("removedUsers")) || [];
-  }
-}
-```
+## 4. List of users
+In this chapter we'll display list of every user in the application with ngFor directive.
 
-**user-random.ts**
-```javascript
-import {Http} from 'angular2/http';
-import {Injectable} from 'angular2/core';
-
-@Injectable()
-export class MyRandom {
-  dataFromAPI;
-  constructor(public http: Http) {
-  }
-  getRandom(){
-    return new Promise((resolve, reject) => {
-    this.http.get('https://randomuser.me/api/').subscribe(res => {
-      resolve(res.json());
-    });
-  })
-  }
-}
-```
 
 ## Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
