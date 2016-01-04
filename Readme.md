@@ -111,7 +111,7 @@ Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. C
 
   **navbar.component.ts**
 
-  [navbar.component.ts](app\shared\navbar\navbar.component.ts)
+  [navbar.component.ts](app/shared/navbar/navbar.component.ts)
 ```javascript
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
