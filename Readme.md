@@ -8,6 +8,7 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 [1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)</br>
 [2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)</br>
 [3. Form / Formulaire](https://github.com/Johannbr/Angular2_example#3-form)</br>
+[4. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#3-form)</br>
 
 
 [X. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
@@ -32,6 +33,7 @@ app/</br>
 ----/app.component.ts</br>
 index.html
 
+**app.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
 
@@ -47,8 +49,9 @@ export class AppComponent {
 }
 ```
 <br/></br>
-Then we'll create the file index.html.</br>
-Ensuite créez le fichier index.html.
+Then we'll create the following file.</br>
+Ensuite créez le fichier suivant.</br></br>
+**index.html**
 
 ```html
 <html>
@@ -96,7 +99,8 @@ Ensuite créez le fichier index.html.
 ```
 <br/>
 And we need to boostrap the application with the boot.ts file. Try to launch the application with *npm start*, it should work.</br>
-Il faut enfin amorcer l'application via le fichier boot.ts. Lancez l'application avec *npm start*, ça devrait fonctionner.
+Il faut enfin amorcer l'application via le fichier boot.ts. Lancez l'application avec *npm start*, ça devrait fonctionner.</br></br>
+**boot.ts**
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
 import {AppComponent} from './app.component'
@@ -117,7 +121,8 @@ Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. C
   ---------------navbar/<br/>
 <br/>
 Then modify *app.components.ts* as follows:<br/>
-Ensuite modifier *app.components.ts* comme suit:
+Ensuite modifier *app.components.ts* comme suit:<br/><br/>
+**app.components.ts**
 ```javascript
 import {Component} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
@@ -143,7 +148,8 @@ export class AppComponent {
 ```
 <br/>
 You should also modify *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.<br/>
-Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.
+Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.<br/><br/>
+**boots.ts**
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
 import {ROUTER_PROVIDERS} from 'angular2/router';
@@ -152,8 +158,8 @@ import {AppComponent} from './app.component'
 bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
 Finally, add the following in index.html, right after <head>, or you can copy the whole file from sources: **[index.html](app/index.html)**<br/>
-Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head>. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](app/index.html)**<br/>
-
+Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head>. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](app/index.html)**<br/><br/>
+**index.html**
 ```html
 <base href="/">
 <script src="node_modules/angular2/bundles/router.dev.js"></script>
@@ -326,12 +332,89 @@ app/<br/>
 ---------------------user-manager.ts<br/>
 ---------------------user-random.ts<br/>
 
+### 3.3 Updating files / Mise à jour des fichiers
+
+You should also modify *boot.ts* as follows or copy the file: **[boot.ts](app/boot.ts)**<br/>
+Il faut aussi modifier le fichier *boot.ts* comme suit ou le copier depuis: **[boot.ts](app/boot.ts)**<br/><br/>
+**boot.ts**
+```javascript
+import {bootstrap}    from 'angular2/platform/browser'
+import {ROUTER_PROVIDERS} from 'angular2/router';
+import {AppComponent} from './app.component'
+import {UserManager} from './shared/user/user-manager';
+import {MyRandom} from './shared/user/user-random';
+import {HTTP_PROVIDERS} from 'angular2/http';
+
+bootstrap(AppComponent,[UserManager, MyRandom, ROUTER_PROVIDERS, HTTP_PROVIDERS]);
+```
+And finally, we'll need to import the module user-form.component...<br/>
+Enfin, nous importerons le mmodule user-form.component...
+
+**home.component.ts**
+```javascript
+import {MyForm} from 'app/components/form/user-form.component';
+```
+...and to instantiate the template user-form, we'll do it by adding its selector in home template and to specify it as a directive. a directive.<br/> ...et nous instancierons le template user-form en ajoutant son sélecteur dans le template de home et en spécifiant comme directive.
+
+```javascript
+template:`<my-form></my-form>`,
+directives: [MyForm]
+```
+<br/>
+
+Home component should be as follows:<br/>
+Le composant Home devrait être comme suit:<br/>
+
+**home.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+import {MyForm} from 'app/components/form/user-form.component';
+
+@Component({
+  selector: 'my-home',
+  template:`<my-form></my-form>`,
+  directives: [MyForm]
+})
+export class HomeComponent {
+  constructor() {
+  }
+}
+
+```
+
 You won't get error anymore if you press the button in the form.<br/>
 Vous ne devriez plus avoir d'erreurs en appuyant sur les boutons du formulaire.<br/>
 
-## 4. List of users
-In this chapter we'll display list of every user in the application with ngFor directive.
+## 4. Users list / Liste d'utilisateurs
+In this chapter we'll display list of every user in the application with ngFor directive. This directive will instantiate a template for each item in a list. <br/>
+Dans ce chapitre nous allons afficher la liste de tous les utilisateurs de l'application avec la directive ngFor. Cette directive instancie le template pour chaque item trouvé dans liste.  <br/>
 
+![form_and_list](./images/form_and_list2.gif "form_and_list")<br/>
+
+For instance, in the code below, the directive will instantiate a new row for each user in users.<br/>
+Dans l'exemple ci-dessous, cette directive va instancier une nouvelle ligne du tableau pour chaque user dans users.<br/>
+```javascript
+<tr *ngFor="#user of users">
+  <td>{{user.id}}</td>
+  <td>{{user.name}}</td>
+</tr>
+```
+
+In order to display every user in our application, copy the following files in the folder below:<br/>
+Afin d'afficher les utilisa de notre application, copiez les fichiers suivant dans le dossier ci-dessous: <br/>
+
+**[user-list.component.ts](app/components/list/user-list.component.ts)**<br/>
+**[user-list.template.html](app/components/list/user-list.template.html)**<br/>
+
+app/<br/>
+----components/<br/>
+-----------------list/<br/>
+----------------------user-list.component.ts<br/>
+----------------------user-list.template.html<br/>
+
+Replace boot.ts by the following: <br/>
+Remplacez boot.ts par le fichier suivant:<br/>
+**[boot.ts](app/boot.ts)**<br/>
 
 ## Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
