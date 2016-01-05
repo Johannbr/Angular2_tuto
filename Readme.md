@@ -5,30 +5,26 @@ Let's create a small CRM app that allows us to create, read, update, delete user
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
-<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:0 orderedList:0 -->
-
-- [1. Let's begin / Pour commencer](#1-lets-begin-pour-commencer)
-	- [1.1 Configuraton](#11-configuraton)
-	- [1.2 First files / Les premiers fichiers](#12-first-files-les-premiers-fichiers)
-- [2. Navbar / Barre de navigation](#2-navbar-barre-de-navigation)
-	- [2.1 Router configuration / Configuration des routes](#21-router-configuration-configuration-des-routes)
-	- [2.2 Home and Removed components / Composants Home et Removed](#22-home-and-removed-components-composants-home-et-removed)
-- [3. Form](#3-form)
-	- [3.1 Data binding](#31-data-binding)
-	- [3.2 Dependency injection / Injection de dépendance](#32-dependency-injection-injection-de-dpendance)
-	- [3.3 Updating files / Mise à jour des fichiers](#33-updating-files-mise-jour-des-fichiers)
-- [4. Users list / Liste d'utilisateurs](#4-users-list-liste-dutilisateurs)
-	- [4.1  ngFor directive](#41-ngfor-directive)
-	- [4.2  Remove users / Supprimer des utilisateurs](#42-remove-users-supprimer-des-utilisateurs)
-- [5  Users details / Details d'utilisateur](#5-users-details-details-dutilisateur)
-	- [5.1 Display details / Afficher les details](#51-display-details-afficher-les-details)
-	- [5.2 Edit details / Modifier les details](#52-edit-details-modifier-les-details)
-- [6. Removed users / Utilisateurs supprimes](#6-removed-users-utilisateurs-supprimes)
-  - [6.1 Display removed users / Afficher les utilisateurs supprimes](#61-display-removed-users-afficher-les-utilisateurs-supprimes)
-  - [6.2 Restore / Restaurer](#62-restore-restaurer)
-- [A. Clone the app / Cloner l'app](#a-clone-the-app-cloner-lapp)
-
-<!-- /TOC -->
+- [1. Let's begin / Pour commencer](#1--lets-begin--pour-commencer)
+	- [1.1. Configuraton](#11--configuraton)
+	- [1.2. First files / Les premiers fichiers](#12--first-files--les-premiers-fichiers)
+- [2. Navbar / Barre de navigation](#2--navbar--barre-de-navigation)
+	- [2.1 Router configuration / Configuration des routes](#21--router-configuration--configuration-des-routes)
+	- [2.2 Home and Removed components / Composants Home et Removed](#22--home-and-removed-components--composants-home-et-removed)
+- [3. Form](#3--form)
+	- [3.1 Data binding](#31--data-binding)
+	- [3.2 Dependency injection / Injection de dépendance](#32--dependency-injection--injection-de-dpendance)
+	- [3.3 Updating files / Mise a jour des fichiers](#33--updating-files--mise-a-jour-des-fichiers)
+- [4. Users list / Liste d'utilisateurs](#4--users-list--liste-dutilisateurs)
+	- [4.1  ngFor directive](#41--ngfor-directive)
+	- [4.2  Remove users / Supprimer des utilisateurs](#42--remove-users--supprimer-des-utilisateurs)
+- [5  Users details / Details d'utilisateur](#5--users-details--details-dutilisateur)
+	- [5.1 Display details / Afficher les details](#51--display-details--afficher-les-details)
+	- [5.2 Edit details / Modifier les details](#52--edit-details--modifier-les-details)
+- [6. Removed users / Utilisateurs supprimes](#6--removed-users--utilisateurs-supprimes)
+- [6.1 Display removed users / Afficher les utilisateurs supprimes](#61---display-removed-users--afficher-les-utilisateurs-supprimes)
+- [6.2 Restore / Restaurer](#62--restore--restaurer)
+- [A. Clone the app / Cloner l'app](#a--clone-the-app--cloner-lapp)
 
 ## 1. Let's begin / Pour commencer
 
@@ -369,7 +365,7 @@ app/<br/>
 ---------------------user-manager.ts<br/>
 ---------------------user-random.ts<br/>
 
-### 3.3 Updating files / Mise à jour des fichiers
+### 3.3 Updating files / Mise a jour des fichiers
 
 You should also modify *boot.ts* as follows or copy the file: **[boot.ts](app/boot.ts)**<br/>
 <img src=/images/French-flag.png width=25 height=25 />
