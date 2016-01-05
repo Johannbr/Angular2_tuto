@@ -12,7 +12,14 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 [2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)</br>
 [3. Form / Formulaire](https://github.com/Johannbr/Angular2_example#3-form)</br>
 [4. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
+[5. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
+[6. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
 
+
+- [1. Let's begin / Pour commencer](#)
+  - [1.1 Configuraton](#)
+  - [1.2 First files / Les premiers fichiers](#)
+- [2. Navbar / Barre de navigation](#)
 
 [A. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
@@ -323,13 +330,9 @@ Comme vous pouvez le voir dans ce code, nous utilisons deux paramètres dans le 
 - Créer ces deux services
 - Les ajouter au processus de bootstrapping
 
-In the following folder, add the file **user-manager.ts** and **user-random.ts**,
-user-manager is the service that will mostly do CRUD operation on the user in your application. User-random will get random users from the API https://randomuser.me and will add them to your application.<br/>
-Dans le dossier suivant, ajouter les fichiers **user-manager.ts** et **user-random.ts** user-manager est le service qui permettra de réaliser des opérations de types CRUD sur les utilisateurs de l'application. Quant à user-random, il fait appel à l'API de https://randomuser.me et permet d'ajouter des utilisateurs de façon aléatoire.<br/>
+In the following folder, add the file **[user-manager.ts](app/shared/user/user-manager.ts)** and **[user-random.ts](app/shared/user/user-random.ts)**. User-manager is the service that will mostly do CRUD operation on the user in your application. User-random will get random users from the API https://randomuser.me and will add them to your application.<br/>
+Dans le dossier suivant, ajouter les fichiers **[user-manager.ts](app/shared/user/user-manager.ts)** et **[user-random.ts](app/shared/user/user-random.ts)**. User-manager est le service qui permettra de réaliser des opérations de types CRUD sur les utilisateurs de l'application. Quant à user-random, il fait appel à l'API de https://randomuser.me et permet d'ajouter des utilisateurs de façon aléatoire.<br/>
 
-Sources:<br/>
-**[user-manager.ts](app/shared/user/user-manager.ts)**<br/>
-**[user-random.ts](app/shared/user/user-random.ts)**<br/>
 
 app/<br/>
 ----shared/<br/>
@@ -406,11 +409,8 @@ Dans l'exemple ci-dessous, cette directive va instancier une nouvelle ligne du t
 </tr>
 ```
 
-In order to display every user in our application, copy the following files in the folder below:<br/>
-Afin d'afficher les utilisa de notre application, copiez les fichiers suivant dans le dossier ci-dessous: <br/>
-
-**[user-list.component.ts](app/components/list/user-list.component.ts)**<br/>
-**[user-list.template.html](app/components/list/user-list.template.html)**<br/>
+In order to display every user in our application, copy the file **[user-list.template.html](app/components/list/user-list.template.html)** in the folder below:<br/>
+Afin d'afficher les utilisateurs de notre application, copiez le fichier **[user-list.template.html](app/components/list/user-list.template.html)** suivant dans le dossier ci-dessous: <br/>
 
 app/<br/>
 ----components/<br/>
@@ -418,14 +418,157 @@ app/<br/>
 ----------------------user-list.component.ts<br/>
 ----------------------user-list.template.html<br/>
 
+
+**user-list.component.ts**<br/>
+```javascript
+import {Component} from 'angular2/core';
+import {User} from 'app/shared/user/user';
+import {UserManager} from 'app/shared/user/user-manager';
+
+@Component({
+  selector: 'user-list',
+  templateUrl:"app/components/list/user-list.template.html"
+})
+export class ListComponent {
+  public users:User[];
+  constructor(public um: UserManager){
+    this.users = um.users;
+  }
+}
+```
+
+
 Replace boot.ts by the following: <br/>
 Remplacez boot.ts par le fichier suivant:<br/>
 **[boot.ts](app/boot.ts)**<br/>
 
-In this list, when you click on a user, or on remove, you should get an error let's fix this.
+In this list, when you click on a user, or on remove, you should get an error let's fix this.<br/>
 Dans la liste, si vous cliquez sur un utilisateur ou sur Remove, vous devriez voir un erreur, résolvons ça.
 
-### 4.2  Remove
+### 4.2  Remove users / Supprimer des utilisateurs
+We should be able to remove users. Those removed users won't be lost forever, they will be put in a bin. From it, we can restore them.<br/>
+Il est possible de supprimer des utilisateurs. Ces utilisateurs supprimés seront mis dans une corbeille. Depuis celle-ci, il sera possible de les restaurer.
+
+![removing_users](./images/removing_users.gif "removing_users")<br/>
+
+Just add the following methods to the user-list component. It will enable user selection and the remove button.
+Ajoutez les méthodes suivantes au composant user-list. Elles activeront la sélection d'un utilisateur et le bouton remove.
+
+**user-list.component.ts**<br/>
+```javascript
+onSelect(user: User) {
+  this.selectedUser = user;
+}
+remove(user) {
+  if (this.selectedUser === user) {
+    this.selectedUser = false;
+  }
+  this.um.remove(user);
+  return false;
+}
+```
+## 5  Users details / Details d'utilisateur
+### 5.1 Display details / Afficher les details
+In the users list, if you click on one of them, it displays its details. <br/>
+Si vous cliquez sur un utilisateur de la liste, ça affichera ses détails. <br/>
+![users_details](./images/users_details.gif "users_details")<br/><br/>
+
+We'll create a new component and its template, **user-detail.component.ts** and **user-detail.template.html** in the folder: <br/>
+Nous allons créer un nouveau composant et son template, **user-detail.component.ts** et **user-detail.template.html** dans le dossier: <br/>
+
+app/<br/>
+----components/<br/>
+-----------------details/<br/>
+----------------------user-detail.component.ts<br/>
+----------------------user-detail.template.html<br/><br/>
+**user-detail.component.ts**<br/>
+```javascript
+import {Component,Input} from 'angular2/core';
+import {User} from '../../shared/user/user';
+import {UserManager} from 'app/shared/user/user-manager';
+@Component({
+  selector: 'my-user-detail',
+  templateUrl:'app/components/details/user-detail.template.html'
+})
+export class UserDetailComponent {
+  @Input('my-user') user:string;
+  constructor(public um:UserManager){
+}
+}
+```
+@Input is a data bound input property. It is bound to the attribute selectedUser of the user-list component. It allows us to pass data between components. Remember, at the end of the template **user-list.template.html** there was:<br/>
+@Input est une propriété permettant de passer des paramètres entre composants. A la fin du template **user-list.template.html**, il y avait la déclaration suivante:
+```html
+<my-user-detail [my-user]="selectedUser"></my-user-detail>
+```
+The attribute selectedUser of the component *ListComponent* is passed to the attribute user of the component  *UserDetailComponent* (**user-detail.component.ts**), see below.<br/>
+L'attribut selectedUser de la composant *ListComponent* est passé vers l'attribut user du composant *UserDetailComponent* (**user-detail.component.ts**) ci-dessous.<br/>
+
+```javascript
+@Input('my-user') user:string;
+```
+
+**user-detail.template.html**
+```html
+<div *ngIf="user">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{user.name}}'s details</h3>
+    </div>
+    <div class="panel-body">
+      <div *ngIf=!editing class="col-xs-8">
+        <div>
+          <label>id: </label>{{user.id}}
+        </div>
+        <div>
+          <label>name: </label>{{user.name}}
+        </div>
+        <div>
+          <label>email: </label>{{user.email}}
+        </div>
+        <div>
+          <label>city: </label>{{user.city}}
+        </div>
+        <div>
+          <label>state: </label>{{user.state}}
+        </div>
+        <button (click)="edit()" type="button" class="btn btn-warning">
+          <span class=" glyphicon glyphicon-edit"></span> Edit </button>
+      </div>
+      <div class="col-xs-4">
+        <img *ngIf="user.picture" src={{user.picture}} alt="Smiley face" height="130" width="130">
+      </div>
+    </div>
+  </div>
+</div>
+```
+We have to modify **user-list.component.ts**. Import the details component...<br/>
+Il faut modifier **user-list.component.ts**. Importez le composant details...<br/><br/>
+**user-list.component.ts**<br/>
+```javascript
+import {UserDetailComponent} from 'app/components/details/user-detail.component';
+```
+...and in the component configuration right under templateUrl, add the directive to display the details component<br/>
+...et dans la configuration du composant, juste en dessous de templateUrl, ajoutez la directive pour afficher le composant "details".<br/>
+```javascript
+  directives: [UserDetailComponent]
+```
+
+So **user-list.component.ts** should look like:  **[user-list.component.ts](app/components/list/user-list.component.ts)**. Let's try the app, it should work.<br/>
+Après modification, **user-list.component.ts** devrait ressembler à:
+**[user-list.component.ts](app/components/list/user-list.component.ts)**. Vous pouvez essayer l'application, elle devrait fonctionner.<br/>
+
+### 5.2 Edit details / Modifier les details
+Now, we want to be able to edit users' details from the same view.<br/>
+Nous voulons pouvoir éditer les détails des utilisateurs depuis la même vue.<br/>
+![editing_users](./images/editing_users.gif "editing_users")<br/><br/>
+We'll modify the component *UserDetailComponent* and its template, use the following files :  **[user-detail.component.ts](app/components/details/user-detail.component.ts)** and **[user-detail.template.html](app/components/details/user-detail.template.html)**.<br/>
+Nous allons modifier le composant *UserDetailComponent* et son template, utilisez les fichiers suivants: **[user-detail.component.ts](app/components/details/user-detail.component.ts)** et **[user-detail.template.html](app/components/details/user-detail.template.html)**.<br/>
+
+## 6. Removed users / Utilisateurs supprimes
+
+The removed users are moved into the bin which is accessible on the page *Removed* on the navbar. First, we'll display the removed users on that page.<br/>
+Les utilisateurs supprimés sont déplacés dans la corbeille qui est accessible à la page *Removed* depuis la barre de navigation. Dans un premier temps, nous afficherons les utilisateurs supprimés sur cette page.<br/>
 
 
 ## A. Getting started / Pour démarrer
