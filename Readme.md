@@ -245,7 +245,7 @@ Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous p
 We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Nous allons créer un formulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
-![form](./images/form.png "form")
+![two-ways-data-binding](./images/two-ways-data-binding2.gif "two-ways-data-binding")
 <br/><br/>
 The strucutre will be as follows:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
