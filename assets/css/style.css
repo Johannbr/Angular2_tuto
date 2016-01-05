@@ -1,0 +1,34 @@
+html{
+  margin:15px;
+}
+body{
+  font-family: "Helvetica Neue",sans-serif;
+}
+
+.center-hor-vert {
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+.users {cursor: pointer;}
+.users tr { cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; }
+.users tr:hover {color: #369; background-color: #EEE; left: .2em;}
+.users .badge {
+  font-size: small;
+  color: white;
+  padding: 0.1em 0.7em;
+  background-color: #369;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -1px;
+}
+.selected { background-color: #EEE; color: #369; }

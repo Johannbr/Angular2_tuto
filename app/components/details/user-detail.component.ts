@@ -1,6 +1,6 @@
 import {Component,Input} from 'angular2/core';
 import {User} from '../../shared/user/user';
-import {UserAutreDetailComponent} from '../edit_detail/user-edit-detail.component';
+// import {UserAutreDetailComponent} from '../edit_detail/user-edit-detail.component';
 import {UserManager} from 'app/shared/user/user-manager';
 @Component({
   selector: 'my-user-detail',
