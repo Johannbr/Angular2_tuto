@@ -12,10 +12,10 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 	- [1.2 First files / Les premiers fichiers](#12-first-files--les-premiers-fichiers)
 - [2. Navbar / Barre de navigation](#2-navbar--barre-de-navigation)
 	- [2.1 Router configuration / Configuration des routes](#21-router-configuration--configuration-des-routes)
-	- [2.2 Home and Removed components / Composants Home et Removed](#22-home-and-removed--components-composants-home-et-removed)
+	- [2.2 Home and Removed components / Composants Home et Removed](#22-home-and-removed-components--composants-home-et-removed)
 - [3. Form](#3-form)
 	- [3.1 Data binding](#31-data-binding)
-	- [3.2 Dependency injection / Injection de dépendance](#32-dependency-injection--injection-de-dpendance)
+	- [3.2 Dependency injection / Injection de dépendance](#32-dependency-injection--injection-de-dependance)
 	- [3.3 Updating files / Mise a jour des fichiers](#33-updating-files--mise-a-jour-des-fichiers)
 - [4. Users list / Liste d'utilisateurs](#4-users-list--liste-dutilisateurs)
 	- [4.1 ngFor directive](#41-ngfor-directive)
@@ -312,7 +312,7 @@ Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deu
 <input [(ngModel)]="user.name">
 ```
 
-### 3.2 Dependency injection / Injection de dépendance
+### 3.2 Dependency injection / Injection de dependance
 We'll now add functionalities to those buttons:
 - add a user by name
 - add a random user from the api: https://randomuser.me/api/
