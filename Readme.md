@@ -1,6 +1,3 @@
-# Small Application with Angular 2
-[uk]: ./images/UK-flag.png "UK flag"
-[french]: ./images/French-flag.png "French flag"
 ## Tutorial/Tutoriel
 <img src=/images/UK-flag.png width=25 height=25 />
 Let's create a small CRM app that allows us to create, read, update, delete users.</br>
@@ -8,13 +5,30 @@ Let's create a small CRM app that allows us to create, read, update, delete user
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
+<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:0 orderedList:0 -->
 
-- [1. Let's begin / Pour commencer](#1-lets-begin--pour-commencer)
-  - [1.1 Configuraton](#)
-  - [1.2 First files / Les premiers fichiers](#)
-- [2. Navbar / Barre de navigation](#2-navbar--barre-de-navigation)
+- [1. Let's begin / Pour commencer](#1-lets-begin-pour-commencer)
+	- [1.1 Configuraton](#11-configuraton)
+	- [1.2 First files / Les premiers fichiers](#12-first-files-les-premiers-fichiers)
+- [2. Navbar / Barre de navigation](#2-navbar-barre-de-navigation)
+	- [2.1 Router configuration / Configuration des routes](#21-router-configuration-configuration-des-routes)
+	- [2.2 Home and Removed components / Composants Home et Removed](#22-home-and-removed-components-composants-home-et-removed)
+- [3. Form](#3-form)
+	- [3.1 Data binding](#31-data-binding)
+	- [3.2 Dependency injection / Injection de dépendance](#32-dependency-injection-injection-de-dpendance)
+	- [3.3 Updating files / Mise à jour des fichiers](#33-updating-files-mise-jour-des-fichiers)
+- [4. Users list / Liste d'utilisateurs](#4-users-list-liste-dutilisateurs)
+	- [4.1  ngFor directive](#41-ngfor-directive)
+	- [4.2  Remove users / Supprimer des utilisateurs](#42-remove-users-supprimer-des-utilisateurs)
+- [5  Users details / Details d'utilisateur](#5-users-details-details-dutilisateur)
+	- [5.1 Display details / Afficher les details](#51-display-details-afficher-les-details)
+	- [5.2 Edit details / Modifier les details](#52-edit-details-modifier-les-details)
+- [6. Removed users / Utilisateurs supprimes](#6-removed-users-utilisateurs-supprimes)
+  - [6.1 Display removed users / Afficher les utilisateurs supprimes](#61-display-removed-users-afficher-les-utilisateurs-supprimes)
+  - [6.2 Restore / Restaurer](#62-restore-restaurer)
+- [A. Clone the app / Cloner l'app](#a-clone-the-app-cloner-lapp)
 
-[A. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
+<!-- /TOC -->
 
 ## 1. Let's begin / Pour commencer
 
@@ -28,8 +42,7 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ### 1.2 First files / Les premiers fichiers
 
-<img src=/images/UK-flag.png width=25 height=25 />
-First we'll create a file named nent.ts. The application should have the following structure:</br>
+First we'll create a file named app.component.ts. The application should have the following structure:</br>
 <img src=/images/French-flag.png width=25 height=25 />
 D'abord, nous allons créer un fichier app.component.ts. L'application aura la structure suivante:
 
@@ -55,6 +68,7 @@ export class AppComponent {
 ```
 <br/></br>
 Then we'll create the following file.</br>
+<img src=/images/French-flag.png width=25 height=25 />
 Ensuite créez le fichier suivant.</br></br>
 **index.html**
 
@@ -74,7 +88,7 @@ Ensuite créez le fichier suivant.</br></br>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link href="assets/css/css.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
     <!-- 2. Configure SystemJS -->
     <script>
       System.config({
@@ -104,6 +118,7 @@ Ensuite créez le fichier suivant.</br></br>
 ```
 <br/>
 And we need to boostrap the application with the boot.ts file. Try to launch the application with *npm start*, it should work.</br>
+<img src=/images/French-flag.png width=25 height=25 />
 Il faut enfin amorcer l'application via le fichier boot.ts. Lancez l'application avec *npm start*, ça devrait fonctionner.</br></br>
 **boot.ts**
 ```javascript
@@ -112,10 +127,12 @@ import {AppComponent} from './app.component'
 
 bootstrap(AppComponent);
 ```
+
 ## 2. Navbar / Barre de navigation
 ### 2.1 Router configuration / Configuration des routes
 Now, we're gonna add a navbar, to navigate between pages. Create a folder named "shared" that will be used by shared components and services. In that folder create another one named "navbar" then into the latter the file named *navbar.component.ts* and another one named *navbar.template.html*. Just grab the code from the following links:
 
+<img src=/images/French-flag.png width=25 height=25 />
 Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. Créer un dossier "shared" qui sera utilisé pour les composants et services partagés. Dans ce dossier on crée un dossier navbar dans lequel on ajoute les fichiers *navbar.component.ts* et *navbar.template.html*. Récupérer le code depuis les liens suivants:
 
   **[navbar.component.ts](app/shared/navbar/navbar.component.ts)**<br/>
@@ -126,11 +143,13 @@ Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. C
   ---------------navbar/<br/>
 <br/>
 Then modify *app.components.ts* as follows:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Ensuite modifier *app.components.ts* comme suit:<br/><br/>
 **app.components.ts**
 ```javascript
 import {Component} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
+import {ListRemoved} from './components/removed/removed.component';
 import {HomeComponent} from './components/home/home.component';
 import {MyNavBar} from './shared/navbar/navbar.component';
 
@@ -153,8 +172,9 @@ export class AppComponent {
 ```
 <br/>
 You should also modify *boot.ts* file. ROUTER_PROVIDERS is a module from the router library, it is used to manage the navigation in the application.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Il faut aussi modifier le fichier *boot.ts*. ROUTER_PROVIDERS est un module importé depuis la librairie *router*, ce module est utilisé pour permettre de gérer la navigation dans l'application.<br/><br/>
-**boots.ts**
+**boot.ts**
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
 import {ROUTER_PROVIDERS} from 'angular2/router';
@@ -163,6 +183,7 @@ import {AppComponent} from './app.component'
 bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
 Finally, add the following in index.html, right after <head>, or you can copy the whole file from sources: **[index.html](app/index.html)**<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head>. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](app/index.html)**<br/><br/>
 **index.html**
 ```html
@@ -175,6 +196,7 @@ Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head
 <br/>
 ### 2.2 Home and Removed components / Composants Home et Removed
 If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Si vous essayez de lancer l'application, vous allez recevoir une erreur, car les composants *Home* et *Removed* ne sont pas encore créés. La structure devrait être comme suit:
 
 app/<br/>
@@ -214,16 +236,19 @@ export class ListRemoved {
 ```
 
 If you launch the app, it should work and you should be able to navigate between these two pages.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Vous pouvez lancer l'application qui ne devrait plus provoquer d'erreurs, vous pouvez normalement naviguer entre les deux pages créées.
 
 ## 3. Form
 ### 3.1 Data binding
 
 We're gonna create an html form with two ways data binding. This form will consist of a component and a template. It will look like this:<br/>
-Nous allons créer un formmulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Nous allons créer un formulaire qui utilise le *two ways data binding*. Le formulaire sera composé d'un composant et d'un template, il ressemblera à ça:<br/>
 ![form](./images/form.png "form")
 <br/><br/>
 The strucutre will be as follows:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 La structure sera comme suit:<br/>
 app/<br/>
 ----components/<br/>
@@ -249,11 +274,13 @@ export class MyForm {
 }
 ```
 Grab the code here: <br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Récupérez le code ici: <br/>
 **[user-form.template.html](app/components/form/user-form.template.html)**
 <br/>
 
 For the time being, the two buttons of the view will report an error, we'll fix it later on. For now create the class User in the following folder:</br>
+<img src=/images/French-flag.png width=25 height=25 />
 Pour le moment, les deux boutons vont générer une erreur, on réglera ce problème un peu plus tard. Pour l'instant, créez la classe User dans le dossier suivant:</br>
 app/<br/>
 ----shared/<br/>
@@ -273,8 +300,13 @@ export class User {
   ) {}
 }
 ```
+</br>
+A bit of style? Copy **[style.css](assets/css/style.css)** into *assets/css/*</br>
+<img src=/images/French-flag.png width=25 height=25 />
+Vous manquez de style? Copiez **[style.css](assets/css/style.css)** dans *assets/css/*</br>
 
 Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of data binding. It uses the attribute of the module declared in MyForm class i.e. user.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deux sens. Dans le template **user-form.template.html**, la directive ci-dessous gère le data binding. Elle utilise l'attribut user de la classe MyForm.
 ```html
 <input [(ngModel)]="user.name">
@@ -286,6 +318,7 @@ We'll now add functionalities to those buttons:
 - add a random user from the api: https://randomuser.me/api/
 In **user-form.component.ts**, add the imports:
 
+<img src=/images/French-flag.png width=25 height=25 />
 Maintenant, nous allons implémenter les fonctionnalités associées aux deux boutons précédents:
 - ajout d'un utilisateur par nom
 - ajout d'un utilisateur via l'api: https://randomuser.me/api/
@@ -296,6 +329,7 @@ import {UserManager} from 'app/shared/user/user-manager';
 import {MyRandom} from 'app/shared/user/user-random';
 ```
 and change the MyForm class by the following:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 remplacez la classe MyForm par le code suivant:
 ```javascript
 export class MyForm {
@@ -319,11 +353,13 @@ As you can see above, we used in the constructor two parameters of type UserMana
 - Creating those two classes
 - Adding them to the bootstrapping process
 
+<img src=/images/French-flag.png width=25 height=25 />
 Comme vous pouvez le voir dans ce code, nous utilisons deux paramètres dans le constructeur qui sont respectivement de type UserManager et MyRandom. Ces deux services sont injectés par Angular. Nous devons suivre deux étapes pour faire fonctionner l'injection de dépendance:
 - Créer ces deux services
 - Les ajouter au processus de bootstrapping
 
 In the following folder, add the file **[user-manager.ts](app/shared/user/user-manager.ts)** and **[user-random.ts](app/shared/user/user-random.ts)**. User-manager is the service that will mostly do CRUD operation on the user in your application. User-random will get random users from the API https://randomuser.me and will add them to your application.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Dans le dossier suivant, ajouter les fichiers **[user-manager.ts](app/shared/user/user-manager.ts)** et **[user-random.ts](app/shared/user/user-random.ts)**. User-manager est le service qui permettra de réaliser des opérations de types CRUD sur les utilisateurs de l'application. Quant à user-random, il fait appel à l'API de https://randomuser.me et permet d'ajouter des utilisateurs de façon aléatoire.<br/>
 
 
@@ -336,6 +372,7 @@ app/<br/>
 ### 3.3 Updating files / Mise à jour des fichiers
 
 You should also modify *boot.ts* as follows or copy the file: **[boot.ts](app/boot.ts)**<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Il faut aussi modifier le fichier *boot.ts* comme suit ou le copier depuis: **[boot.ts](app/boot.ts)**<br/><br/>
 **boot.ts**
 ```javascript
@@ -349,13 +386,16 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 bootstrap(AppComponent,[UserManager, MyRandom, ROUTER_PROVIDERS, HTTP_PROVIDERS]);
 ```
 And finally, we'll need to import the module user-form.component...<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Enfin, nous importerons le mmodule user-form.component...
 
 **home.component.ts**
 ```javascript
 import {MyForm} from 'app/components/form/user-form.component';
 ```
-...and to instantiate the template user-form, we'll do it by adding its selector in home template and to specify it as a directive. a directive.<br/> ...et nous instancierons le template user-form en ajoutant son sélecteur dans le template de home et en spécifiant comme directive.
+...and to instantiate the template user-form, we'll do it by adding its selector in home template and to specify it as a directive.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+...et nous instancierons le template user-form en ajoutant son sélecteur dans le template de home et en spécifiant comme directive.
 
 ```javascript
 template:`<my-form></my-form>`,
@@ -364,6 +404,7 @@ directives: [MyForm]
 <br/>
 
 Home component should be as follows:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Le composant Home devrait être comme suit:<br/>
 
 **home.component.ts**
@@ -384,11 +425,13 @@ export class HomeComponent {
 ```
 
 You won't get error anymore if you press the button in the form.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Vous ne devriez plus avoir d'erreurs en appuyant sur les boutons du formulaire.<br/>
 
 ## 4. Users list / Liste d'utilisateurs
 ### 4.1  ngFor directive
 In this chapter we'll display list of every user in the application with ngFor directive. This directive will instantiate a template for each item in a list. <br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Dans ce chapitre nous allons afficher la liste de tous les utilisateurs de l'application avec la directive ngFor. Cette directive instancie le template pour chaque item trouvé dans liste.  <br/>
 
 ![form_and_list](./images/form_and_list2.gif "form_and_list")<br/>
@@ -403,6 +446,7 @@ Dans l'exemple ci-dessous, cette directive va instancier une nouvelle ligne du t
 ```
 
 In order to display every user in our application, copy the file **[user-list.template.html](app/components/list/user-list.template.html)** in the folder below:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Afin d'afficher les utilisateurs de notre application, copiez le fichier **[user-list.template.html](app/components/list/user-list.template.html)** suivant dans le dossier ci-dessous: <br/>
 
 app/<br/>
@@ -432,6 +476,7 @@ export class ListComponent {
 
 
 Replace boot.ts by the following: <br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Remplacez boot.ts par le fichier suivant:<br/>
 **[boot.ts](app/boot.ts)**<br/>
 
@@ -440,11 +485,13 @@ Dans la liste, si vous cliquez sur un utilisateur ou sur Remove, vous devriez vo
 
 ### 4.2  Remove users / Supprimer des utilisateurs
 We should be able to remove users. Those removed users won't be lost forever, they will be put in a bin. From it, we can restore them.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Il est possible de supprimer des utilisateurs. Ces utilisateurs supprimés seront mis dans une corbeille. Depuis celle-ci, il sera possible de les restaurer.
 
 ![removing_users](./images/removing_users.gif "removing_users")<br/>
 
 Just add the following methods to the user-list component. It will enable user selection and the remove button.
+<img src=/images/French-flag.png width=25 height=25 />
 Ajoutez les méthodes suivantes au composant user-list. Elles activeront la sélection d'un utilisateur et le bouton remove.
 
 **user-list.component.ts**<br/>
@@ -463,10 +510,12 @@ remove(user) {
 ## 5  Users details / Details d'utilisateur
 ### 5.1 Display details / Afficher les details
 In the users list, if you click on one of them, it displays its details. <br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Si vous cliquez sur un utilisateur de la liste, ça affichera ses détails. <br/>
 ![users_details](./images/users_details.gif "users_details")<br/><br/>
 
 We'll create a new component and its template, **user-detail.component.ts** and **user-detail.template.html** in the folder: <br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Nous allons créer un nouveau composant et son template, **user-detail.component.ts** et **user-detail.template.html** dans le dossier: <br/>
 
 app/<br/>
@@ -490,11 +539,13 @@ export class UserDetailComponent {
 }
 ```
 @Input is a data bound input property. It is bound to the attribute selectedUser of the user-list component. It allows us to pass data between components. Remember, at the end of the template **user-list.template.html** there was:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 @Input est une propriété permettant de passer des paramètres entre composants. A la fin du template **user-list.template.html**, il y avait la déclaration suivante:
 ```html
 <my-user-detail [my-user]="selectedUser"></my-user-detail>
 ```
 The attribute selectedUser of the component *ListComponent* is passed to the attribute user of the component  *UserDetailComponent* (**user-detail.component.ts**), see below.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 L'attribut selectedUser de la composant *ListComponent* est passé vers l'attribut user du composant *UserDetailComponent* (**user-detail.component.ts**) ci-dessous.<br/>
 
 ```javascript
@@ -536,37 +587,88 @@ L'attribut selectedUser de la composant *ListComponent* est passé vers l'attrib
 </div>
 ```
 We have to modify **user-list.component.ts**. Import the details component...<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Il faut modifier **user-list.component.ts**. Importez le composant details...<br/><br/>
 **user-list.component.ts**<br/>
 ```javascript
 import {UserDetailComponent} from 'app/components/details/user-detail.component';
 ```
 ...and in the component configuration right under templateUrl, add the directive to display the details component<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 ...et dans la configuration du composant, juste en dessous de templateUrl, ajoutez la directive pour afficher le composant "details".<br/>
 ```javascript
   directives: [UserDetailComponent]
 ```
 
 So **user-list.component.ts** should look like:  **[user-list.component.ts](app/components/list/user-list.component.ts)**. Let's try the app, it should work.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Après modification, **user-list.component.ts** devrait ressembler à:
 **[user-list.component.ts](app/components/list/user-list.component.ts)**. Vous pouvez essayer l'application, elle devrait fonctionner.<br/>
 
 ### 5.2 Edit details / Modifier les details
 Now, we want to be able to edit users' details from the same view.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Nous voulons pouvoir éditer les détails des utilisateurs depuis la même vue.<br/>
 ![editing_users](./images/editing_users.gif "editing_users")<br/><br/>
 We'll modify the component *UserDetailComponent* and its template, use the following files :  **[user-detail.component.ts](app/components/details/user-detail.component.ts)** and **[user-detail.template.html](app/components/details/user-detail.template.html)**.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Nous allons modifier le composant *UserDetailComponent* et son template, utilisez les fichiers suivants: **[user-detail.component.ts](app/components/details/user-detail.component.ts)** et **[user-detail.template.html](app/components/details/user-detail.template.html)**.<br/>
 
 ## 6. Removed users / Utilisateurs supprimes
 
-The removed users are moved into the bin which is accessible on the page *Removed* on the navbar. First, we'll display the removed users on that page.<br/>
-Les utilisateurs supprimés sont déplacés dans la corbeille qui est accessible à la page *Removed* depuis la barre de navigation. Dans un premier temps, nous afficherons les utilisateurs supprimés sur cette page.<br/>
+## 6.1 Display removed users / Afficher les utilisateurs supprimes
+The removed users are moved into the bin which is accessible on the page *Removed* on the navbar. First, we'll display the removed users on that page. Modify the file **removed.component.ts** and create **[removed.template.html](app/components/removed/removed.template.html)** into the following folder:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Les utilisateurs supprimés sont déplacés dans la corbeille qui est accessible à la page *Removed* depuis la barre de navigation. Dans un premier temps, nous afficherons les utilisateurs supprimés sur cette page. Modifiez le fichier **removed.component.ts** et créer **[removed.template.html](app/components/removed/removed.template.html)** dans le dossier suivant:<br/>
+app/<br/>
+----components/<br/>
+-----------------removed/<br/>
+----------------------removed.component.ts<br/>
+----------------------removed.template.html<br/><br/>
+
+**removed.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+import {UserManager} from 'app/shared/user/user-manager';
+import {User} from 'app/shared/user/user';
+
+@Component({
+  selector: 'user-list-removeded',
+  templateUrl:"app/components/removed/removed.template.html"
+})
+export class ListRemoved {
+  public users:User[];
+  constructor(public um: UserManager){
+    this.users = um.removedUsers;
+  }
+}
+
+```
+Give it a try, it should be fine.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Essayez, ça devrait fonctionner.
+
+## 6.2 Restore / Restaurer
+Now we'll add two methods to the buttons in *removed.template.html*. The first one will restore a user, i.e. move a user from the removed list to the actual list. The remove button will definitely remove the user. Add the following code into **removed.component.ts** after the constructor: <br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Maintenant nous allons ajouter deux méthodes aux boutons du template *removed.template.html*. Le premier permettra de restaurer un utilisateur effacé, c'est à dire copier de la liste de la corbeille vers la liste courante. Le bouton *remove* effacera définitivement l'utilisateur. Ajoutez le code suivant dans le composant **removed.component.ts**, juste en dessous du constructeur.<br/>
+```javascript
+restore(user){
+    this.um.restore(user);
+  }
+  remove(user){
+    this.um.removeDefinitely(user);
+  }
+```
+The above methods have already been implemented into the service UserManager.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Les méthodes précédentes ont déjà été implémentées dans le service UserManager.
 
 
-## A. Getting started / Pour démarrer
-If you don't want to do the tutorial, just follow the following steps:
-(Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes)
+## A. Clone the app / Cloner l'app
+If you don't want to do the tutorial, just follow the following steps:<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes:
 - install node.js in order to use npm: https://nodejs.org/en/download/
 - clone the repository
 - cd /folder_of_the_source/
