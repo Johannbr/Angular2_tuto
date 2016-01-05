@@ -117,9 +117,9 @@ Ensuite créez le fichier suivant.</br></br>
 </html>
 ```
 <br/>
-And we need to boostrap the application with the boot.ts file. Try to launch the application with *npm start*, it should work.</br>
+And we need to boostrap the application with the boot.ts file.</br>
 <img src=/images/French-flag.png width=25 height=25 />
-Il faut enfin amorcer l'application via le fichier boot.ts. Lancez l'application avec *npm start*, ça devrait fonctionner.</br></br>
+Il faut enfin amorcer l'application via le fichier boot.ts.</br></br>
 **boot.ts**
 ```javascript
 import {bootstrap}    from 'angular2/platform/browser'
@@ -127,6 +127,9 @@ import {AppComponent} from './app.component'
 
 bootstrap(AppComponent);
 ```
+From within the app folder, try to launch the application with *npm start*, it should work.</br>
+<img src=/images/French-flag.png width=25 height=25 />
+Depuis le dossier de l'application, faites *npm start*, l'application devrait se lancer.
 
 ## 2. Navbar / Barre de navigation
 ### 2.1 Router configuration / Configuration des routes
@@ -182,9 +185,9 @@ import {AppComponent} from './app.component'
 
 bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
-Finally, add the following in index.html, right after <head>, or you can copy the whole file from sources: **[index.html](app/index.html)**<br/>
+Finally, add the following in index.html, right after *< head >*, or you can copy the whole file from sources: **[index.html](index.html)**<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Enfin, il faut ajouter le code suivant au fichier index.html, juste après <head>. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](app/index.html)**<br/><br/>
+Enfin, il faut ajouter le code suivant au fichier index.html, juste après *< head >*. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](index.html)**<br/><br/>
 **index.html**
 ```html
 <base href="/">
