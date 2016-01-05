@@ -1,17 +1,20 @@
 # Small Application with Angular 2
-
+[uk]: ./images/UK-flag.png "UK flag"
+[french]: ./images/French-flag.png "French flag"
 ## Tutorial/Tutoriel
+<img src=/images/UK-flag.png width=25 height=25 />
 Let's create a small CRM app that allows us to create, read, update, delete users.</br>
+<img src=/images/French-flag.png width=25 height=25 />
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
 [1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)</br>
 [2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)</br>
 [3. Form / Formulaire](https://github.com/Johannbr/Angular2_example#3-form)</br>
-[4. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#3-form)</br>
+[4. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
 
 
-[X. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
+[A. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
 ## 1. Let's begin / Pour commencer
 
@@ -25,7 +28,9 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ### 1.2 First files / Les premiers fichiers
 
+<img src=/images/UK-flag.png width=25 height=25 />
 First we'll create a file named nent.ts. The application should have the following structure:</br>
+<img src=/images/French-flag.png width=25 height=25 />
 D'abord, nous allons créer un fichier app.component.ts. L'application aura la structure suivante:
 
 app/</br>
@@ -386,6 +391,7 @@ You won't get error anymore if you press the button in the form.<br/>
 Vous ne devriez plus avoir d'erreurs en appuyant sur les boutons du formulaire.<br/>
 
 ## 4. Users list / Liste d'utilisateurs
+### 4.1  ngFor directive
 In this chapter we'll display list of every user in the application with ngFor directive. This directive will instantiate a template for each item in a list. <br/>
 Dans ce chapitre nous allons afficher la liste de tous les utilisateurs de l'application avec la directive ngFor. Cette directive instancie le template pour chaque item trouvé dans liste.  <br/>
 
@@ -416,7 +422,13 @@ Replace boot.ts by the following: <br/>
 Remplacez boot.ts par le fichier suivant:<br/>
 **[boot.ts](app/boot.ts)**<br/>
 
-## Getting started / Pour démarrer
+In this list, when you click on a user, or on remove, you should get an error let's fix this.
+Dans la liste, si vous cliquez sur un utilisateur ou sur Remove, vous devriez voir un erreur, résolvons ça.
+
+### 4.2  Remove
+
+
+## A. Getting started / Pour démarrer
 If you don't want to do the tutorial, just follow the following steps:
 (Si vous ne souhaitez pas suivre le tutoriel, faites les étapes suivantes)
 - install node.js in order to use npm: https://nodejs.org/en/download/
