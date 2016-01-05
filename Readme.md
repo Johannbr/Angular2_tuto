@@ -8,18 +8,11 @@ Let's create a small CRM app that allows us to create, read, update, delete user
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
-[1. Let's begin / Pour commencer](https://github.com/Johannbr/Angular2_example#1-lets-begin--pour-commencer)</br>
-[2. Navbar / Barre de navigation](https://github.com/Johannbr/Angular2_example#2-navbar--barre-de-navigation)</br>
-[3. Form / Formulaire](https://github.com/Johannbr/Angular2_example#3-form)</br>
-[4. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
-[5. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
-[6. Users list / Liste d'utilisateurs](https://github.com/Johannbr/Angular2_example#4-users-list--liste-dutilisateurs)</br>
 
-
-- [1. Let's begin / Pour commencer](#)
+- [1. Let's begin / Pour commencer](#1-lets-begin--pour-commencer)
   - [1.1 Configuraton](#)
   - [1.2 First files / Les premiers fichiers](#)
-- [2. Navbar / Barre de navigation](#)
+- [2. Navbar / Barre de navigation](#2-navbar--barre-de-navigation)
 
 [A. Getting started / Pour démarrer](https://github.com/Johannbr/Angular2_example#getting-started--pour-démarrer)
 
