@@ -5,26 +5,30 @@ Let's create a small CRM app that allows us to create, read, update, delete user
 Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 
 ## Index
-- [1. Let's begin / Pour commencer](#1--lets-begin--pour-commencer)
-	- [1.1. Configuraton](#11--configuraton)
-	- [1.2. First files / Les premiers fichiers](#12--first-files--les-premiers-fichiers)
-- [2. Navbar / Barre de navigation](#2--navbar--barre-de-navigation)
-	- [2.1 Router configuration / Configuration des routes](#21--router-configuration--configuration-des-routes)
-	- [2.2 Home and Removed components / Composants Home et Removed](#22--home-and-removed-components--composants-home-et-removed)
-- [3. Form](#3--form)
-	- [3.1 Data binding](#31--data-binding)
-	- [3.2 Dependency injection / Injection de dépendance](#32--dependency-injection--injection-de-dpendance)
-	- [3.3 Updating files / Mise a jour des fichiers](#33--updating-files--mise-a-jour-des-fichiers)
-- [4. Users list / Liste d'utilisateurs](#4--users-list--liste-dutilisateurs)
-	- [4.1  ngFor directive](#41--ngfor-directive)
-	- [4.2  Remove users / Supprimer des utilisateurs](#42--remove-users--supprimer-des-utilisateurs)
-- [5  Users details / Details d'utilisateur](#5--users-details--details-dutilisateur)
-	- [5.1 Display details / Afficher les details](#51--display-details--afficher-les-details)
-	- [5.2 Edit details / Modifier les details](#52--edit-details--modifier-les-details)
-- [6. Removed users / Utilisateurs supprimes](#6--removed-users--utilisateurs-supprimes)
-- [6.1 Display removed users / Afficher les utilisateurs supprimes](#61---display-removed-users--afficher-les-utilisateurs-supprimes)
-- [6.2 Restore / Restaurer](#62--restore--restaurer)
-- [A. Clone the app / Cloner l'app](#a--clone-the-app--cloner-lapp)
+<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:0 orderedList:0 -->
+
+- [1. Let's begin / Pour commencer](#1-lets-begin--pour-commencer)
+	- [1.1 Configuraton](#11-configuraton)
+	- [1.2 First files / Les premiers fichiers](#12-first-files--les-premiers-fichiers)
+- [2. Navbar / Barre de navigation](#2-navbar--barre-de-navigation)
+	- [2.1 Router configuration / Configuration des routes](#21-router-configuration--configuration-des-routes)
+	- [2.2 Home and Removed components / Composants Home et Removed](#22-home-and-removed--components-composants-home-et-removed)
+- [3. Form](#3-form)
+	- [3.1 Data binding](#31-data-binding)
+	- [3.2 Dependency injection / Injection de dépendance](#32-dependency-injection--injection-de-dpendance)
+	- [3.3 Updating files / Mise a jour des fichiers](#33-updating-files--mise-a-jour-des-fichiers)
+- [4. Users list / Liste d'utilisateurs](#4-users-list--liste-dutilisateurs)
+	- [4.1 ngFor directive](#41-ngfor-directive)
+	- [4.2 Remove users / Supprimer des utilisateurs](#42-remove-users--supprimer-des-utilisateurs)
+- [5. Users details / Details d'utilisateur](#5-users-details--details-dutilisateur)
+	- [5.1 Display details / Afficher les details](#51-display-details--afficher-les-details)
+	- [5.2 Edit details / Modifier les details](#52-edit-details--modifier-les-details)
+- [6. Removed users / Utilisateurs supprimes](#6-removed-users--utilisateurs-supprimes)
+	- [6.1 Display removed users / Afficher les utilisateurs supprimes](#61-display-removed-users--afficher-les-utilisateurs-supprimes)
+	- [6.2 Restore / Restaurer](#62-restore--restaurer)
+- [A. Clone the app / Cloner l'app](#a-clone-the-app--cloner-lapp)
+
+<!-- /TOC -->
 
 ## 1. Let's begin / Pour commencer
 
@@ -425,7 +429,7 @@ You won't get error anymore if you press the button in the form.<br/>
 Vous ne devriez plus avoir d'erreurs en appuyant sur les boutons du formulaire.<br/>
 
 ## 4. Users list / Liste d'utilisateurs
-### 4.1  ngFor directive
+### 4.1 ngFor directive
 In this chapter we'll display list of every user in the application with ngFor directive. This directive will instantiate a template for each item in a list. <br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Dans ce chapitre nous allons afficher la liste de tous les utilisateurs de l'application avec la directive ngFor. Cette directive instancie le template pour chaque item trouvé dans liste.  <br/>
@@ -479,7 +483,7 @@ Remplacez boot.ts par le fichier suivant:<br/>
 In this list, when you click on a user, or on remove, you should get an error let's fix this.<br/>
 Dans la liste, si vous cliquez sur un utilisateur ou sur Remove, vous devriez voir un erreur, résolvons ça.
 
-### 4.2  Remove users / Supprimer des utilisateurs
+### 4.2 Remove users / Supprimer des utilisateurs
 We should be able to remove users. Those removed users won't be lost forever, they will be put in a bin. From it, we can restore them.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Il est possible de supprimer des utilisateurs. Ces utilisateurs supprimés seront mis dans une corbeille. Depuis celle-ci, il sera possible de les restaurer.
@@ -503,7 +507,7 @@ remove(user) {
   return false;
 }
 ```
-## 5  Users details / Details d'utilisateur
+## 5. Users details / Details d'utilisateur
 ### 5.1 Display details / Afficher les details
 In the users list, if you click on one of them, it displays its details. <br/>
 <img src=/images/French-flag.png width=25 height=25 />
@@ -612,7 +616,7 @@ Nous allons modifier le composant *UserDetailComponent* et son template, utilise
 
 ## 6. Removed users / Utilisateurs supprimes
 
-## 6.1 Display removed users / Afficher les utilisateurs supprimes
+### 6.1 Display removed users / Afficher les utilisateurs supprimes
 The removed users are moved into the bin which is accessible on the page *Removed* on the navbar. First, we'll display the removed users on that page. Modify the file **removed.component.ts** and create **[removed.template.html](app/components/removed/removed.template.html)** into the following folder:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Les utilisateurs supprimés sont déplacés dans la corbeille qui est accessible à la page *Removed* depuis la barre de navigation. Dans un premier temps, nous afficherons les utilisateurs supprimés sur cette page. Modifiez le fichier **removed.component.ts** et créer **[removed.template.html](app/components/removed/removed.template.html)** dans le dossier suivant:<br/>
@@ -644,7 +648,7 @@ Give it a try, it should be fine.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Essayez, ça devrait fonctionner.
 
-## 6.2 Restore / Restaurer
+### 6.2 Restore / Restaurer
 Now we'll add two methods to the buttons in *removed.template.html*. The first one will restore a user, i.e. move a user from the removed list to the actual list. The remove button will definitely remove the user. Add the following code into **removed.component.ts** after the constructor: <br/>
 <img src=/images/French-flag.png width=25 height=25 />
 Maintenant nous allons ajouter deux méthodes aux boutons du template *removed.template.html*. Le premier permettra de restaurer un utilisateur effacé, c'est à dire copier de la liste de la corbeille vers la liste courante. Le bouton *remove* effacera définitivement l'utilisateur. Ajoutez le code suivant dans le composant **removed.component.ts**, juste en dessous du constructeur.<br/>
