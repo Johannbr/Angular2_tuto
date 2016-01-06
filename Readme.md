@@ -145,10 +145,10 @@ Nous allons ajouter une barre de navigation pour passer d'une page à l'autre. C
   ----shared/<br/>
   ---------------navbar/<br/>
 <br/>
-Then modify *app.components.ts* as follows:<br/>
+Then modify *app.component.ts* as follows:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Ensuite modifier *app.components.ts* comme suit:<br/><br/>
-**app.components.ts**
+Ensuite modifier *app.component.ts* comme suit:<br/><br/>
+**app.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
