@@ -344,9 +344,9 @@ A bit of style? Copy **[style.css](assets/css/style.css)** into *assets/css/*</b
 <img src=/images/French-flag.png width=25 height=25 />
 Vous manquez de style? Copiez **[style.css](assets/css/style.css)** dans *assets/css/*</br>
 
-Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of data binding. It uses the attribute of the module declared in MyForm class i.e. user.<br/>
+Launch the application and you should be able to use two ways data binding. In **user-form.template.html** the following directive is responsible of data binding. It uses the property of the module declared in MyForm class i.e. user.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deux sens. Dans le template **user-form.template.html**, la directive ci-dessous gère le data binding. Elle utilise l'attribut user de la classe MyForm.
+Lancez l'application, vous devriez pouvoir utiliser le data binding dans les deux sens. Dans le template **user-form.template.html**, la directive ci-dessous gère le data binding. Elle utilise la propriété user de la classe MyForm.
 ```html
 <input [(ngModel)]="user.name">
 ```
@@ -544,9 +544,9 @@ remove(user) {
 }
 ```
 
-And of course, do not forget to set selectedUser as an attribute of the class ListComponent. <br/>
+And of course, do not forget to set selectedUser as an property of the class ListComponent. <br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Bien entendu, n'oubliez pas de spécifier selectedUser en tant qu'attribt de la classe ListComponent.
+Bien entendu, n'oubliez pas de spécifier selectedUser en tant que propriété de la classe ListComponent.
 ```javascript
   public selectedUser:User;
 ```
@@ -615,15 +615,15 @@ export class UserDetailComponent {
 }
 }
 ```
-@Input is a data bound input property. It is bound to the attribute selectedUser of the user-list component. It allows us to pass data between components. Remember, at the end of the template **user-list.template.html** there was:<br/>
+@Input is a data bound input property. It is bound to the property selectedUser of the user-list component. It allows us to pass data between components. Remember, at the end of the template **user-list.template.html** there was:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
 @Input est une propriété permettant de passer des paramètres entre composants. A la fin du template **user-list.template.html**, il y avait la déclaration suivante:
 ```html
 <my-user-detail [my-user]="selectedUser"></my-user-detail>
 ```
-The attribute selectedUser of the component *ListComponent* is passed to the attribute user of the component  *UserDetailComponent* (**user-detail.component.ts**), see below.<br/>
+The property selectedUser of the component *ListComponent* is passed to the property user of the component  *UserDetailComponent* (**user-detail.component.ts**), see below.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-L'attribut selectedUser de la composant *ListComponent* est passé vers l'attribut user du composant *UserDetailComponent* (**user-detail.component.ts**) ci-dessous.<br/>
+La propriété selectedUser de la composant *ListComponent* est passé vers la propriété user du composant *UserDetailComponent* (**user-detail.component.ts**) ci-dessous.<br/>
 
 ```javascript
 @Input('my-user') user:string;
