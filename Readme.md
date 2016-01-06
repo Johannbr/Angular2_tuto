@@ -35,8 +35,8 @@ Je vous propose de créer une petite application de type CRM qui fait du CRUD.
 ### 1.1 Configuraton
 - Install node.js  https://nodejs.org/en/download/
 - Create a new folder
-- Copy package.json
-- Copy tsconfig.json
+- Copy **[package.json](package.json)**
+- Copy **[tsconfig.json](tsconfig.json)**
 - Do npm install (will install the dependencies)
 
 
