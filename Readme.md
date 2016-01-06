@@ -66,7 +66,7 @@ export class AppComponent {
   }
 }
 ```
-<br/></br>
+<br/>
 Then we'll create the following file.</br>
 <img src=/images/French-flag.png width=25 height=25 />
 Ensuite créez le fichier suivant.</br></br>
@@ -185,18 +185,23 @@ import {AppComponent} from './app.component'
 
 bootstrap(AppComponent,[ROUTER_PROVIDERS]);
 ```
-Finally, add the following in index.html, right after *< head >*, or you can copy the whole file from sources: **[index.html](index.html)**<br/>
+Finally, add the following code in index.html, right after *< head>* ...<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Enfin, il faut ajouter le code suivant au fichier index.html, juste après *< head >*. Vous pouvez aussi copier le fichier depuis les sources: **[index.html](index.html)**<br/><br/>
+Enfin, il faut ajouter le code suivant au fichier index.html, juste après la balise *< head>* ... <br/><br/>
 **index.html**
 ```html
 <base href="/">
+```
+... and right after *< script src="node_modules/angular2/bundles/angular2.dev.js"></script >*.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+... et juste après *< script src="node_modules/angular2/bundles/angular2.dev.js"></script >*.
+```html
 <script src="node_modules/angular2/bundles/router.dev.js"></script>
 <script src="node_modules/angular2/bundles/http.dev.js"></script>
 ```
+You can copy the whole file from sources:  **[index.html](index.html)**<br/>
+Vous pouvez aussi copier le fichier depuis les sources:  **[index.html](index.html)**<br/>
 
-
-<br/>
 ### 2.2 Home and Removed components / Composants Home et Removed
 If you try right now to launch the application, you'll get a message error, because the application doesn't know the component Home nor Removed. The structure should be as following:<br/>
 <img src=/images/French-flag.png width=25 height=25 />
@@ -213,7 +218,6 @@ app/<br/>
 ```javascript
 import {Component} from 'angular2/core';
 
-**home.component.ts**
 @Component({
   selector: 'my-home',
   template:`<h2>Home Component</h2>`,
@@ -303,6 +307,38 @@ export class User {
   ) {}
 }
 ```
+
+In the previous component HomeComponent, we just displayed a text. We now want to display the component MyForm, so we need to modify **home.component.ts**. Import the module *user-form.component*...<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Dans le composant HomeComponent précédemment créé, nous affichions un simple texte. Nous voulons maintenant afficher le composant MyForm. Nous devons modifier **home.component.ts**, d'abord, on importe le module *user-form.component*...
+```javascript
+import {MyForm} from 'app/components/form/user-form.component';
+```
+... and to instantiate the template user-form we need also to add it in the template and as a directive.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+... et pour instancier le template user-form, on ajoute le sélecteur associé à MyForm comme template puis on l'ajoute en tant que directive.
+```javascript
+template:`<my-form></my-form>`,
+directives: [MyForm]
+```
+
+So **home.component.ts** should be as follows:
+```javascript
+import {Component} from 'angular2/core';
+import {MyForm} from 'app/components/form/user-form.component';
+
+@Component({
+  selector: 'my-home',
+  template:`<my-form></my-form>`,
+  directives: [MyForm]
+})
+export class HomeComponent {
+  constructor() {
+  }
+}
+
+```
+
 </br>
 A bit of style? Copy **[style.css](assets/css/style.css)** into *assets/css/*</br>
 <img src=/images/French-flag.png width=25 height=25 />
@@ -388,44 +424,6 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 
 bootstrap(AppComponent,[UserManager, MyRandom, ROUTER_PROVIDERS, HTTP_PROVIDERS]);
 ```
-And finally, we'll need to import the module user-form.component...<br/>
-<img src=/images/French-flag.png width=25 height=25 />
-Enfin, nous importerons le mmodule user-form.component...
-
-**home.component.ts**
-```javascript
-import {MyForm} from 'app/components/form/user-form.component';
-```
-...and to instantiate the template user-form, we'll do it by adding its selector in home template and to specify it as a directive.<br/>
-<img src=/images/French-flag.png width=25 height=25 />
-...et nous instancierons le template user-form en ajoutant son sélecteur dans le template de home et en spécifiant comme directive.
-
-```javascript
-template:`<my-form></my-form>`,
-directives: [MyForm]
-```
-<br/>
-
-Home component should be as follows:<br/>
-<img src=/images/French-flag.png width=25 height=25 />
-Le composant Home devrait être comme suit:<br/>
-
-**home.component.ts**
-```javascript
-import {Component} from 'angular2/core';
-import {MyForm} from 'app/components/form/user-form.component';
-
-@Component({
-  selector: 'my-home',
-  template:`<my-form></my-form>`,
-  directives: [MyForm]
-})
-export class HomeComponent {
-  constructor() {
-  }
-}
-
-```
 
 You won't get error anymore if you press the button in the form.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
@@ -477,6 +475,40 @@ export class ListComponent {
 }
 ```
 
+In the previous component HomeComponent, we just displayed MyForm component. We now want to display the component ListComponent, so we need to modify **home.component.ts**. Import the module *user-list.component*...<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Dans le composant HomeComponent précédemment créé, nous affichions uniquement le formulaire. Nous voulons maintenant afficher le composant ListComponent. Nous devons modifier **home.component.ts**, d'abord, on importe le module *user-list.component*...
+```javascript
+import {ListComponent} from 'app/components/list/user-list.component';
+```
+... and to instantiate the template user-form we need also to add it in the template and as a directive.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
+... et pour instancier le template user-form, on ajoute le sélecteur associé à MyForm comme template puis on l'ajoute en tant que directive.
+```javascript
+template:`<my-form></my-form>
+<user-list></user-list>`,
+directives: [MyForm, ListComponent]
+```
+
+So **home.component.ts** should be as follows:
+```javascript
+import {Component} from 'angular2/core';
+import {MyForm} from '../form/user-form.component';
+import {ListComponent} from 'app/components/list/user-list.component';
+
+@Component({
+  selector: 'my-home',
+  template:`<my-form></my-form>
+  <user-list></user-list>`,
+  directives: [MyForm, ListComponent]
+})
+export class HomeComponent {
+  constructor() {
+  }
+}
+```
+
+
 
 Replace boot.ts by the following: <br/>
 <img src=/images/French-flag.png width=25 height=25 />
@@ -484,6 +516,7 @@ Remplacez boot.ts par le fichier suivant:<br/>
 **[boot.ts](app/boot.ts)**<br/>
 
 In this list, when you click on a user, or on remove, you should get an error let's fix this.<br/>
+<img src=/images/French-flag.png width=25 height=25 />
 Dans la liste, si vous cliquez sur un utilisateur ou sur Remove, vous devriez voir un erreur, résolvons ça.
 
 ### 4.2 Remove users / Supprimer des utilisateurs
@@ -493,9 +526,9 @@ Il est possible de supprimer des utilisateurs. Ces utilisateurs supprimés seron
 
 ![removing_users](./images/removing_users.gif "removing_users")<br/>
 
-Just add the following methods to the user-list component. It will enable user selection and the remove button.
+Just add the following methods to the *ListComponent* component. It will enable user selection and the remove button.<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Ajoutez les méthodes suivantes au composant user-list. Elles activeront la sélection d'un utilisateur et le bouton remove.
+Ajoutez les méthodes suivantes au composant *ListComponent*. Elles activeront la sélection d'un utilisateur et le bouton remove.
 
 **user-list.component.ts**<br/>
 ```javascript
@@ -510,6 +543,47 @@ remove(user) {
   return false;
 }
 ```
+
+And of course, do not forget to set selectedUser as an attribute of the class ListComponent. <br/>
+<img src=/images/French-flag.png width=25 height=25 />
+Bien entendu, n'oubliez pas de spécifier selectedUser en tant qu'attribt de la classe ListComponent.
+```javascript
+  public selectedUser:User;
+```
+
+So, it should look like this:<br/>
+<img src=/images/French-flag.png width=25 height=25/>
+Ce fichier doit ressembler à ça:<br/><br/>
+**user-list.component.ts**
+```javascript
+import {Component} from 'angular2/core';
+import {User} from 'app/shared/user/user';
+import {UserManager} from 'app/shared/user/user-manager';
+
+@Component({
+  selector: 'user-list',
+  templateUrl:"app/components/list/user-list.template.html"
+})
+export class ListComponent {
+  public users:User[];
+  public selectedUser:User;
+  constructor(public um: UserManager){
+    this.users = um.users;
+  }
+  onSelect(user: User) {
+  this.selectedUser = user;
+}
+remove(user) {
+  if (this.selectedUser === user) {
+    this.selectedUser = false;
+  }
+  this.um.remove(user);
+  return false;
+}
+}
+
+```
+
 ## 5. Users details / Details d'utilisateur
 ### 5.1 Display details / Afficher les details
 In the users list, if you click on one of them, it displays its details. <br/>
