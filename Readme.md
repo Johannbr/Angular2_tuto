@@ -151,16 +151,17 @@ Ensuite modifier *app.component.ts* comme suit:<br/><br/>
 **app.component.ts**
 ```javascript
 import {Component} from 'angular2/core';
-import {RouteConfig} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ListRemoved} from './components/removed/removed.component';
 import {HomeComponent} from './components/home/home.component';
 import {MyNavBar} from './shared/navbar/navbar.component';
 
 @Component({
   selector: 'my-app',
-  template:`<h2>{{title}}</h2>
-  <my-navbar></my-navbar>`,
-  directives:[MyNavBar]
+	template:`<h2>{{title}}</h2>
+  <my-navbar></my-navbar>
+  <router-outlet></router-outlet>`,
+  directives:[MyNavBar, ROUTER_DIRECTIVES]
 })
 @RouteConfig([
   {path:'/', name: 'Home', component: HomeComponent},
@@ -219,6 +220,7 @@ app/<br/>
 import {Component} from 'angular2/core';
 
 @Component({
+	selector: 'my-home',
   template:`<h2>Home Component</h2>`,
   directives: []
 })
@@ -232,7 +234,7 @@ export class HomeComponent {
 import {Component} from 'angular2/core';
 
 @Component({
-  selector: 'user-list-removed',
+	selector: 'removed-list',
   template:`<h2>Removed Component</h2>`,
 })
 export class ListRemoved {
@@ -327,6 +329,7 @@ import {Component} from 'angular2/core';
 import {MyForm} from 'app/components/form/user-form.component';
 
 @Component({
+	selector: 'my-home',
   template:`<my-form></my-form>`,
   directives: [MyForm]
 })
@@ -495,6 +498,7 @@ import {MyForm} from '../form/user-form.component';
 import {ListComponent} from 'app/components/list/user-list.component';
 
 @Component({
+	selector: 'my-home',
   template:`<my-form></my-form>
   <user-list></user-list>`,
   directives: [MyForm, ListComponent]
@@ -707,6 +711,7 @@ import {UserManager} from 'app/shared/user/user-manager';
 import {User} from 'app/shared/user/user';
 
 @Component({
+	selector: 'removed-list',
   templateUrl:"app/components/removed/removed.template.html"
 })
 export class ListRemoved {
