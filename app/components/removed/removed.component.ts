@@ -3,7 +3,6 @@ import {UserManager} from 'app/shared/user/user-manager';
 import {User} from 'app/shared/user/user';
 
 @Component({
-  selector: 'user-list-removeded',
   templateUrl:"app/components/removed/removed.template.html"
 })
 export class ListRemoved {

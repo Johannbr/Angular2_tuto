@@ -219,7 +219,6 @@ app/<br/>
 import {Component} from 'angular2/core';
 
 @Component({
-  selector: 'my-home',
   template:`<h2>Home Component</h2>`,
   directives: []
 })
@@ -328,7 +327,6 @@ import {Component} from 'angular2/core';
 import {MyForm} from 'app/components/form/user-form.component';
 
 @Component({
-  selector: 'my-home',
   template:`<my-form></my-form>`,
   directives: [MyForm]
 })
@@ -497,7 +495,6 @@ import {MyForm} from '../form/user-form.component';
 import {ListComponent} from 'app/components/list/user-list.component';
 
 @Component({
-  selector: 'my-home',
   template:`<my-form></my-form>
   <user-list></user-list>`,
   directives: [MyForm, ListComponent]
@@ -710,7 +707,6 @@ import {UserManager} from 'app/shared/user/user-manager';
 import {User} from 'app/shared/user/user';
 
 @Component({
-  selector: 'user-list-removeded',
   templateUrl:"app/components/removed/removed.template.html"
 })
 export class ListRemoved {
