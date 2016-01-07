@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
 import {ListRemoved} from './components/removed/removed.component';
 import {HomeComponent} from './components/home/home.component';
+import {LoginComponent} from './components/login/login.component';
 import {MyNavBar} from './shared/navbar/navbar.component';
 
 @Component({
@@ -12,7 +13,8 @@ import {MyNavBar} from './shared/navbar/navbar.component';
 })
 @RouteConfig([
   {path:'/', name: 'Home', component: HomeComponent},
-  {path:'/removed', name: 'Removed', component: ListRemoved}
+  {path:'/removed', name: 'Removed', component: ListRemoved},
+  {path:'/login', name: 'Login', component: LoginComponent}
 ])
 export class AppComponent {
   public title;
