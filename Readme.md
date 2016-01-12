@@ -1,8 +1,8 @@
 ## Tutorial/Tutoriel
 <img src=/images/UK-flag.png width=25 height=25 />
-Let's create a small CRM app that allows us to create, read, update, delete users.</br>
+Let's create a small CRM app that allows us to create, read, update, delete users. **[Click here for a live example!](http://plnkr.co/edit/bfvDCLlDSue6LVuVvBRp?p=preview)**<br/>
 <img src=/images/French-flag.png width=25 height=25 />
-Je vous propose de créer une petite application de type CRM qui fait du CRUD.
+Je vous propose de créer une petite application de type CRM qui fait du CRUD. **[Cliquez ici pour lancer l'app sous Plunker!](http://plnkr.co/edit/bfvDCLlDSue6LVuVvBRp?p=preview)**
 
 ## Index
 <!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:0 orderedList:0 -->
